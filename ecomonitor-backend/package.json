@@ -1,7 +1,7 @@
 {
   "name": "ecomonitor-backend",
   "version": "1.0.0",
-  "description": "backend system of EcoMonitor - a simplified environmental monitoring system of Amplo Engenharia´s selection process",
+  "description": "backend do sistema EcoMonitor - sistema de monitoramento ambiental",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
