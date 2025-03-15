@@ -50,4 +50,8 @@ export class Reading {
   setValue(value: string): void {
     this.value = value;
   }
+
+  toString(): string {
+    return `reading ID: ${this.getId} | location: ${this.getLocation} | dateTime: ${this.getDateTime} | measurementType: ${this.getMeasurementType} | value: ${this.getValue}`;
+  }
 }
