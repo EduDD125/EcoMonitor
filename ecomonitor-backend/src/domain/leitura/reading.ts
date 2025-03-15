@@ -4,14 +4,14 @@ import { idStrategy } from "../../utils/idStrategy";
 export class Reading {
   private id: UUID;
   private location: string;
-  private dateTime: string;
+  private dateTime: Date;
   private measurementType: string;
   private value: string;
 
-  constructor(location: string, dateTime: string, measurementType: string, value: string, id?: UUID) {
+  constructor(location: string, measurementType: string, value: string, id?: UUID) {
     this.id = id ?? idStrategy(); 
     this.location = location;
-    this.dateTime = dateTime;
+    this.dateTime = new Date();
     this.measurementType = measurementType;
     this.value = value;
   }
@@ -28,12 +28,8 @@ export class Reading {
     this.location = location;
   }
 
-  getDateTime(): string {
+  getDateTime(): Date {
     return this.dateTime;
-  }
-
-  setDateTime(dateTime: string): void {
-    this.dateTime = dateTime;
   }
 
   getMeasurementType(): string {
