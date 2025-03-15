@@ -1,13 +1,14 @@
+import { UUID } from "crypto";
 import { idStrategy } from "../../utils/idStrategy";
 
 export class Reading {
-  private id: string;
+  private id: UUID;
   private location: string;
   private dateTime: string;
   private measurementType: string;
   private value: string;
 
-  constructor(location: string, dateTime: string, measurementType: string, value: string, id?: string) {
+  constructor(location: string, dateTime: string, measurementType: string, value: string, id?: UUID) {
     this.id = id ?? idStrategy(); 
     this.location = location;
     this.dateTime = dateTime;
@@ -15,7 +16,7 @@ export class Reading {
     this.value = value;
   }
 
-  getId(): string {
+  getId(): UUID {
     return this.id;
   }
 

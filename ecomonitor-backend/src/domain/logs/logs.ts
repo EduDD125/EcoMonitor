@@ -1,7 +1,8 @@
+import { UUID } from "crypto";
 import { idStrategy } from "../../utils/idStrategy";
 
 export class Log {
-  private id: string;
+  private id: UUID;
   private timestamp: Date;
   private level: "INFO" | "WARN" | "ERROR" | "DEBUG";
   private httpStatus: number;

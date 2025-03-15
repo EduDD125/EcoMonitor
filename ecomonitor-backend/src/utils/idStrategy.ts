@@ -1,5 +1,5 @@
-import { randomUUID } from "crypto"
+import { randomUUID, UUID } from "crypto"
 
-export function idStrategy(): string {
+export function idStrategy(): UUID {
     return randomUUID();
 }
