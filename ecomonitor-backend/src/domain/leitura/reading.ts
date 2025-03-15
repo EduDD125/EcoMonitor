@@ -52,6 +52,8 @@ export class Reading {
   }
 
   toString(): string {
-    return `reading ID: ${this.getId} | location: ${this.getLocation} | dateTime: ${this.getDateTime} | measurementType: ${this.getMeasurementType} | value: ${this.getValue}`;
+    return `Reading ID: ${this.getId()} | Location: ${this.getLocation()} |
+    DateTime: ${this.getDateTime()} | MeasurementType: ${this.getMeasurementType()} |
+    Value: ${this.getValue()}`;
   }
 }
