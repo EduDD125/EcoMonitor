@@ -7,7 +7,7 @@ export class LogModel extends Model { // todo: voltar permissai de acesso de atr
     public timestamp!: Date;
     public level!: "INFO" | "WARN" | "ERROR" | "DEBUG";
     public httpStatus!: number;
-    public method!: string;
+    public method!: "GET" | "POST" | "PUT" | "DELETE" | "REQUEST";
     public endpoint!: string;
     public message!: string;
     public requestIp!: string;

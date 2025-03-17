@@ -6,7 +6,7 @@ export class Log {
   private timestamp: Date;
   private level: "INFO" | "WARN" | "ERROR" | "DEBUG";
   private httpStatus: number;
-  private method: string;
+  private method: "GET" | "POST" | "PUT" | "DELETE" | "REQUEST";
   private endpoint: string;
   private message: string;
   private requestIp: string;
@@ -18,7 +18,7 @@ export class Log {
   constructor(
     level: "INFO" | "WARN" | "ERROR" | "DEBUG",
     httpStatus: number,
-    method: string,
+    method: "GET" | "POST" | "PUT" | "DELETE" | "REQUEST",
     endpoint: string,
     message: string,
     requestIp: string,
