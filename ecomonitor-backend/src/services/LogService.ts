@@ -122,13 +122,13 @@ export class LogService {
         await this.logRepository.save(log);
     }
 
-    async logGetAllReadingsSuccess(endpoint: string, requestIp: string, userAgent?: string, userId?: string): Promise<void> {
+    async logGetAllItensSuccess(entityName: string, endpoint: string, requestIp: string, userAgent?: string, userId?: string): Promise<void> {
         const log = new Log(
             "INFO",
             200,
             "GET",
             endpoint,
-            "Successfully retrieved all readings",
+            `Successfully retrieved all ${entityName}`,
             requestIp,
             "Backend",
             userAgent,
@@ -139,13 +139,13 @@ export class LogService {
         await this.logRepository.save(log);
     }
     
-    async logGetReadingSuccess(endpoint: string, readingId: string, requestIp: string, userAgent?: string, userId?: string): Promise<void> {
+    async logGetItemSuccess(entityName: string, endpoint: string, readingId: string, requestIp: string, userAgent?: string, userId?: string): Promise<void> {
         const log = new Log(
             "INFO",
             200,
             "GET",
             endpoint,
-            `Successfully retrieved reading with ID: ${readingId}`,
+            `Successfully retrieved ${entityName} with ID: ${readingId}`,
             requestIp,
             "Backend",
             userAgent,
@@ -156,13 +156,13 @@ export class LogService {
         await this.logRepository.save(log);
     }
     
-    async logGetReadingNotFound(endpoint: string, readingId: string, requestIp: string, userAgent?: string, userId?: string): Promise<void> {
+    async logGetItemNotFound(entityName: string, endpoint: string, readingId: string, requestIp: string, userAgent?: string, userId?: string): Promise<void> {
         const log = new Log(
             "WARN",
             404,
             "GET",
             endpoint,
-            `Reading with ID: ${readingId} not found`,
+            `${entityName} with ID: ${readingId} not found`,
             requestIp,
             "Backend",
             userAgent,
