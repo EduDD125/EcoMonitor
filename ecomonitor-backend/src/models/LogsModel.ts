@@ -3,18 +3,18 @@ import { DataTypes, Model } from "sequelize";
 import { sequelize } from "../config/database";
 
 export class LogModel extends Model {
-    private id!: UUID;
-    private timestamp!: Date;
-    private level!: "INFO" | "WARN" | "ERROR" | "DEBUG";
-    private httpStatus!: number;
-    private method!: string;
-    private endpoint!: string;
-    private message!: string;
-    private requestIp!: string;
-    private userAgent?: string;
-    private origin!: string;
-    private stackTrace?: string;
-    private userId?: string;
+    public id!: UUID;
+    public timestamp!: Date;
+    public level!: "INFO" | "WARN" | "ERROR" | "DEBUG";
+    public httpStatus!: number;
+    public method!: string;
+    public endpoint!: string;
+    public message!: string;
+    public requestIp!: string;
+    public userAgent?: string;
+    public origin!: string;
+    public stackTrace?: string;
+    public userId?: string;
 }
 
 LogModel.init(
