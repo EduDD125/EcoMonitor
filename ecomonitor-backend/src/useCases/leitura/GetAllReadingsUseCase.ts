@@ -15,10 +15,10 @@ export class GetAllReadingsUseCase {
 
         try {
             const readings = await this.readingRepository.findAll();
+
+            if (!readings) throw new Error("There're no Readings register in the system.")
             
             await logService.logGetAllItensSuccess("Reading", "/api/leituras", requestIp, userAgent, userId);
-            
-            if (!readings) return null;
             return readings;
         } catch (error: any) {
             await logService.logGetAllItensError("Reading", "/api/leituras", requestIp, error.stack, userAgent, userId);
