@@ -3,7 +3,7 @@ import { Log } from "../../domain/logs/logs";
 import { ILogRepository } from "./ILogRepository";
 import { LogModel } from "../../models/LogsModel";
 
-export class LogRepositoryPostreSQL implements ILogRepository {
+export class LogRepositoryPostgreSQL implements ILogRepository {
     async save(log: Log): Promise<void> {
         await LogModel.create({
             id: log.getId(),
