@@ -2,7 +2,6 @@ import { UUID } from 'crypto';
 import { Reading } from '../../domain/leitura/reading';
 import { IReadingRepository } from './IReadingRepository'
 import { ReadingModel } from '../../models/ReadingModel';
-import { measureMemory } from 'vm';
 
 export class ReadingRepositoryPostgreSQL implements IReadingRepository {
     async save(reading: Reading): Promise<void> {
@@ -13,6 +12,30 @@ export class ReadingRepositoryPostgreSQL implements IReadingRepository {
             measurementType: reading.getMeasurementType(),
             valeu: reading.getValue(),
         });
+    }
+    async update(reading: Reading): Promise<[number, Reading[]]> {
+        const readingId = reading.getId();
+        const [affectedCount, updatedReadingsModels] = await ReadingModel.update(
+            {
+                location: reading.getLocation(),
+                dateTime: reading.getDateTime(),
+                measurementType: reading.getMeasurementType(),
+                value: reading.getValue(),
+            },
+            {
+                where: { readingId },
+                returning: true, // Retorna os registros atualizados
+            }
+        );
+
+        const updatedReadings = updatedReadingsModels.map( r => new Reading(
+            r.location,
+            r.measurementType,
+            r.value,
+            r.id,
+        ));
+
+        return [affectedCount, updatedReadings];
     }
     async findAll(): Promise<Reading[]> {
         const readings = await ReadingModel.findAll();
