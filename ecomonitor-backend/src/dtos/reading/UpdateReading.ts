@@ -4,5 +4,5 @@ export interface UpdateReadingDTO {
     dateTime?: string;
     measurementType?: string;
     value?: string;
-  }
+}
   

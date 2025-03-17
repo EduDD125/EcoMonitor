@@ -4,5 +4,4 @@ export interface ReadingResponseDTO {
     dateTime: string;
     measurementType: string;
     value: string;
-  }
-  
+}
