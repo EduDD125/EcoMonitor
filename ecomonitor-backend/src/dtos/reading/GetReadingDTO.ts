@@ -1,4 +1,4 @@
-export interface ReadingResponseDTO {
+export interface GetReadingDTO {
     id: string;
     location: string;
     dateTime: string;
