@@ -203,4 +203,54 @@ export class LogService {
         await this.logRepository.save(log);
     }
     
+    async logUpdateSuccess(
+        entityName: string,
+        endpoint: string,
+        readingId: string,
+        requestIp: string,
+        userAgent?: string,
+        userId?: string
+    ): Promise<void> {
+        const log = new Log(
+            "INFO",
+            200,
+            "PUT",
+            endpoint,
+            `Successfully updated ${entityName} with ID: ${readingId}`,
+            requestIp,
+            "Backend",
+            userAgent,
+            undefined,
+            userId
+        );
+    
+        await this.logRepository.save(log);
+    }
+    
+    async logUpdateError(
+        entityName: string,
+        endpoint: string,
+        readingId: string,
+        requestIp: string,
+        errorStack?: string,
+        userAgent?: string,
+        userId?: string
+    ): Promise<void> {
+        const log = new Log(
+            "ERROR",
+            500,
+            "PUT",
+            endpoint,
+            `Failed to update ${entityName} with ID: ${readingId}`,
+            requestIp,
+            "Backend",
+            userAgent,
+            errorStack,
+            userId
+        );
+    
+        await this.logRepository.save(log);
+    }
+    
+    
 }
