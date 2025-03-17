@@ -1,6 +1,6 @@
 import { GetLogDTO } from "./GetLogDTO";
 
-export interface GetLogs {
+export interface GetAllLogs {
     logs: GetLogDTO[];
     total: number;
 }
