@@ -16,7 +16,8 @@ export class DeleteReadingUseCase {
         const logService = new LogService(this.logRepository);
 
         if (!isValidUUID(data.id)) {
-            logService.logInvalidUUIDFormat("Reading", data.id, "api/leituras", requestIp, userAgent, userId);
+            await logService.logInvalidUUIDFormat("Reading", data.id, "api/leituras", requestIp, userAgent, userId);
+            return
         }
 
         const readingId: UUID = data.id as UUID;
