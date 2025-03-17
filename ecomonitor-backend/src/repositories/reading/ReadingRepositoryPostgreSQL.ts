@@ -36,8 +36,8 @@ export class ReadingRepositoryPostgreSQL implements IReadingRepository {
         );
     }
 
-    async delete(id: UUID): Promise<void> {
-        await ReadingModel.destroy({ where: {id} });
+    async delete(id: UUID): Promise<number> {
+        return await ReadingModel.destroy({ where: {id} });
     }
 
 }
