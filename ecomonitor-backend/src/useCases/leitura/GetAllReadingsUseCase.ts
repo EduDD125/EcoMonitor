@@ -10,7 +10,7 @@ export class GetAllReadingsUseCase {
         private logRepository: ILogRepository
     ) {}
 
-    async execute(data: GetAllReadingsDTO, requestIp: string, userAgent?: string, userId?: string): Promise<Reading[] | null> {
+    async execute( requestIp: string, userAgent?: string, userId?: string): Promise<Reading[] | null> {
         const logService = new LogService(this.logRepository);
 
         try {
