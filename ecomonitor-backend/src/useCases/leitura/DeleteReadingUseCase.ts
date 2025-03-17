@@ -17,13 +17,20 @@ export class DeleteReadingUseCase {
 
         if (!isValidUUID(data.id)) {
             await logService.logInvalidUUIDFormat("Reading", data.id, "api/leituras", requestIp, userAgent, userId);
-            return
+            throw new Error("Invalid UUID format.");
         }
 
         const readingId: UUID = data.id as UUID;
 
         try {
-            await this.readingRepository.delete(readingId);
+            const reading = await this.readingRepository.findById(readingId);
+
+            if (!reading) {
+                throw new Error(`Reading item with id ${readingId} not found.`);
+            }
+            const destroyedRows = await this.readingRepository.delete(readingId);
+
+            if (destroyedRows < 1) throw new Error(`Failure deleting Reading item with id ${readingId}. Database informs that any row was deleted.`);
 
             await logService.logDeletionSuccess("Reading", "api/leituras",requestIp, userAgent, userId);
         } catch (error: any) {
