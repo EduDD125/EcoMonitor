@@ -122,7 +122,13 @@ export class LogService {
         await this.logRepository.save(log);
     }
 
-    async logGetAllItensSuccess(entityName: string, endpoint: string, requestIp: string, userAgent?: string, userId?: string): Promise<void> {
+    async logGetAllItensSuccess(
+        entityName: string,
+        endpoint: string,
+        requestIp: string,
+        userAgent?: string,
+        userId?: string
+    ): Promise<void> {
         const log = new Log(
             "INFO",
             200,
@@ -133,6 +139,30 @@ export class LogService {
             "Backend",
             userAgent,
             undefined,
+            userId
+        );
+    
+        await this.logRepository.save(log);
+    }
+
+    async logGetAllItensError(
+        entityName: string,
+        endpoint: string,
+        requestIp: string,
+        errorStack?: string, 
+        userAgent?: string,
+        userId?: string
+    ): Promise<void> {
+        const log = new Log(
+            "WARN",
+            404,
+            "GET",
+            endpoint,
+            `Problem trying to retriever ${entityName} from the data base`,
+            requestIp,
+            "Backend",
+            userAgent,
+            errorStack,
             userId
         );
     
