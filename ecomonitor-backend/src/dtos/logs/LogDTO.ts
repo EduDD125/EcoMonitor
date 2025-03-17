@@ -1,4 +1,5 @@
 export interface LogDTO {
+    timestamp: Date;
     level: "INFO" | "WARN" | "ERROR" | "DEBUG";
     httpStatus: number;
     method: string;
@@ -9,6 +10,4 @@ export interface LogDTO {
     userAgent?: string;
     stackTrace?: string;
     userId?: string;
-    timestamp: Date;
-  }
-  
+}  
