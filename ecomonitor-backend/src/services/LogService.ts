@@ -169,13 +169,13 @@ export class LogService {
         await this.logRepository.save(log);
     }
     
-    async logGetItemSuccess(entityName: string, endpoint: string, readingId: string, requestIp: string, userAgent?: string, userId?: string): Promise<void> {
+    async logGetItemSuccess(entityName: string, endpoint: string, itemId: string, requestIp: string, userAgent?: string, userId?: string): Promise<void> {
         const log = new Log(
             "INFO",
             200,
             "GET",
             endpoint,
-            `Successfully retrieved ${entityName} with ID: ${readingId}`,
+            `Successfully retrieved ${entityName} with ID: ${itemId}`,
             requestIp,
             "Backend",
             userAgent,
@@ -186,13 +186,13 @@ export class LogService {
         await this.logRepository.save(log);
     }
     
-    async logGetItemNotFound(entityName: string, endpoint: string, readingId: string, requestIp: string, userAgent?: string, userId?: string): Promise<void> {
+    async logGetItemNotFound(entityName: string, endpoint: string, itemId: string, requestIp: string, userAgent?: string, userId?: string): Promise<void> {
         const log = new Log(
             "WARN",
             404,
             "GET",
             endpoint,
-            `${entityName} with ID: ${readingId} not found`,
+            `${entityName} with ID: ${itemId} not found`,
             requestIp,
             "Backend",
             userAgent,
@@ -206,7 +206,7 @@ export class LogService {
     async logUpdateSuccess(
         entityName: string,
         endpoint: string,
-        readingId: string,
+        itemId: string,
         requestIp: string,
         userAgent?: string,
         userId?: string
@@ -216,7 +216,7 @@ export class LogService {
             200,
             "PUT",
             endpoint,
-            `Successfully updated ${entityName} with ID: ${readingId}`,
+            `Successfully updated ${entityName} with ID: ${itemId}`,
             requestIp,
             "Backend",
             userAgent,
@@ -230,7 +230,7 @@ export class LogService {
     async logUpdateError(
         entityName: string,
         endpoint: string,
-        readingId: string,
+        itemId: string,
         requestIp: string,
         errorStack?: string,
         userAgent?: string,
@@ -241,7 +241,7 @@ export class LogService {
             500,
             "PUT",
             endpoint,
-            `Failed to update ${entityName} with ID: ${readingId}`,
+            `Failed to update ${entityName} with ID: ${itemId}`,
             requestIp,
             "Backend",
             userAgent,
