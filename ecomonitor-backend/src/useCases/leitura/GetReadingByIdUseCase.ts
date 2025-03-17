@@ -6,25 +6,25 @@ import { GetReadingDTO } from "../../dtos/reading/GetReadingDTO";
 import { isValidUUID } from "../../utils/validateUUID";
 import { UUID } from "crypto";
 
-export class GetReadingUseCase {
+export class GetReadingByIdUseCase {
     constructor(
         private readingRepository: IReadingRepository,
         private logRepository: ILogRepository
     ) {}
 
-    async execute(data: GetReadingDTO, requestIp: string, userAgent?: string, userId?: string): Promise<Reading | null> {
+    async execute(id: string, requestIp: string, userAgent?: string, userId?: string): Promise<Reading | null> {
         const logService = new LogService(this.logRepository);
 
-        if (!isValidUUID(data.id)) {
-            await logService.logInvalidUUIDFormat("Reading", data.id, "api/leituras", requestIp, userAgent, userId);
+        if (!isValidUUID(id)) {
+            await logService.logInvalidUUIDFormat("Reading", id, "api/leituras", requestIp, userAgent, userId);
             throw new Error("Invalid UUID format.");
         }
-        const readingId = data.id as UUID;
+        const readingId = id as UUID;
 
         try {
             const reading = await this.readingRepository.findById(readingId);
 
-            if (!reading) throw new Error(`Reading item with id ${readingId} not found`);
+            if (!reading) throw new Error(`Reading item with id ${readingId} not found.`);
             
             await logService.logGetAllItensSuccess("Reading", "/api/leituras", requestIp, userAgent, userId);
             return reading;
