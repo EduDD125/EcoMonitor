@@ -1,14 +1,14 @@
 import { Request, Response } from "express";
-import { CreateReadingUseCase } from "../useCases/leitura/CreateReadingUseCase";
-import { GetAllReadingsUseCase } from "../useCases/leitura/GetAllReadingsUseCase";
-import { GetReadingByIdUseCase } from "../useCases/leitura/GetReadingByIdUseCase";
-import { UpdateReadingUseCase } from "../useCases/leitura/UpdateReadingUseCase";
-import { DeleteReadingUseCase } from "../useCases/leitura/DeleteReadingUseCase";
-import { ReadingRepositoryPostgreSQL } from "../repositories/reading/ReadingRepositoryPostgreSQL";
-import { LogRepositoryPostgreSQL } from "../repositories/logs/LogRepositoryPostgreSQL";
-import { CreateReadingDTO } from "../dtos/reading/CreateReadingDTO";
-import { UpdateReadingDTO } from "../dtos/reading/UpdateReading";
-import { DeleteReadingDTO } from "../dtos/reading/DeleteReadingDTO";
+import { CreateReadingUseCase } from "../../useCases/leitura/CreateReadingUseCase";
+import { GetAllReadingsUseCase } from "../../useCases/leitura/GetAllReadingsUseCase";
+import { GetReadingByIdUseCase } from "../../useCases/leitura/GetReadingByIdUseCase";
+import { UpdateReadingUseCase } from "../../useCases/leitura/UpdateReadingUseCase";
+import { DeleteReadingUseCase } from "../../useCases/leitura/DeleteReadingUseCase";
+import { ReadingRepositoryPostgreSQL } from "../../repositories/reading/ReadingRepositoryPostgreSQL";
+import { LogRepositoryPostgreSQL } from "../../repositories/logs/LogRepositoryPostgreSQL";
+import { CreateReadingDTO } from "../../dtos/reading/CreateReadingDTO";
+import { UpdateReadingDTO } from "../../dtos/reading/UpdateReading";
+import { DeleteReadingDTO } from "../../dtos/reading/DeleteReadingDTO";
 
 export class ReadingController {
     private readingRepository = new ReadingRepositoryPostgreSQL();
