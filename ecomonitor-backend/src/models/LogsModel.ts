@@ -2,7 +2,7 @@ import { UUID } from "crypto";
 import { DataTypes, Model } from "sequelize";
 import { sequelize } from "../config/database";
 
-export class LogModel extends Model {
+export class LogModel extends Model { // todo: voltar permissai de acesso de atributos para privado de criar metodos de acesso a dados
     public id!: UUID;
     public timestamp!: Date;
     public level!: "INFO" | "WARN" | "ERROR" | "DEBUG";
