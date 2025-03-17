@@ -97,4 +97,28 @@ export class LogService {
 
         await this.logRepository.save(log);
     }
+
+    async logInvalidUUIDFormat(
+        entityName: string,
+        receivedId: string,
+        endpoint: string,
+        requestIp: string,
+        userAgent?: string,
+        userId?: string
+    ): Promise<void> {
+        const log = new Log(
+            "WARN",
+            400,
+            "REQUEST",
+            endpoint,
+            `Invalid UUID format received for ${entityName}: ${receivedId}`,
+            requestIp,
+            "Backend",
+            userAgent,
+            undefined,
+            userId
+        );
+
+        await this.logRepository.save(log);
+    }
 }
