@@ -1,0 +1,117 @@
+{
+	"info": {
+		"_postman_id": "12345678-abcd-efgh-ijkl-9876543210ab",
+		"name": "Reading API Tests",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Create Reading",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"location\": \"São Paulo\",\n  \"measurementType\": \"Temperature\",\n  \"dateTime\": \"2024-03-14T12:00:00Z\",\n  \"value\": \"30.5\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:5433/api/leituras",
+					"protocol": "http",
+					"host": ["localhost"],
+					"port": "5433",
+					"path": ["api", "leituras"]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get All Readings",
+			"request": {
+				"method": "GET",
+				"url": {
+					"raw": "http://localhost:5433/api/leituras",
+					"protocol": "http",
+					"host": ["localhost"],
+					"port": "5433",
+					"path": ["api", "leituras"]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Reading by ID",
+			"request": {
+				"method": "GET",
+				"url": {
+					"raw": "http://localhost:5433/api/leituras/:id",
+					"protocol": "http",
+					"host": ["localhost"],
+					"port": "5433",
+					"path": ["api", "leituras", ":id"],
+					"variable": [
+						{
+							"key": "id",
+							"value": "REPLACE_WITH_READING_ID"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update Reading",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"location\": \"Rio de Janeiro\",\n  \"measurementType\": \"Humidity\",\n  \"dateTime\": \"2024-03-15T14:30:00Z\",\n  \"value\": \"75.2\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:5433/api/leituras/:id",
+					"protocol": "http",
+					"host": ["localhost"],
+					"port": "5433",
+					"path": ["api", "leituras", ":id"],
+					"variable": [
+						{
+							"key": "id",
+							"value": "REPLACE_WITH_READING_ID"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Reading",
+			"request": {
+				"method": "DELETE",
+				"url": {
+					"raw": "http://localhost:5433/api/leituras/:id",
+					"protocol": "http",
+					"host": ["localhost"],
+					"port": "5433",
+					"path": ["api", "leituras", ":id"],
+					"variable": [
+						{
+							"key": "id",
+							"value": "REPLACE_WITH_READING_ID"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

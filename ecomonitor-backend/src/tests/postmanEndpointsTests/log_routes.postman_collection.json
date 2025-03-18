@@ -1,0 +1,46 @@
+{
+    "info": {
+        "_postman_id": "12345678-abcd-1234-efgh-56789abcdef0",
+        "name": "Log API Test Collection",
+        "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+    },
+    "item": [
+        {
+            "name": "Get All Logs",
+            "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                    "raw": "http://localhost:5433/api/logs",
+                    "protocol": "http",
+                    "host": ["localhost"],
+                    "port": "5433",
+                    "path": ["api", "logs"]
+                }
+            },
+            "response": []
+        },
+        {
+            "name": "Get Log By ID",
+            "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                    "raw": "http://localhost:5433/api/logs/{{log_id}}",
+                    "protocol": "http",
+                    "host": ["localhost"],
+                    "port": "5433",
+                    "path": ["api", "logs", "{{log_id}}"],
+                    "variable": [
+                        {
+                            "key": "log_id",
+                            "value": "f4076c52-5c72-49e9-8d13-60a4b28afc74",
+                            "type": "string"
+                        }
+                    ]
+                }
+            },
+            "response": []
+        }
+    ]
+}
