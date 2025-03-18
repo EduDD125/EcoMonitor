@@ -1,0 +1,31 @@
+.main__content {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    height: 100vh;
+
+    background: url("/public/photos/backgrounds/control-painel-background.jpg") lightgray 50% / cover no-repeat;
+}
+
+.drawer-menu__button-container {
+    background-color: #fff;
+    border-radius: 10px;
+    width: min-content;
+    height: min-content;
+}
+
+.control-painel__container {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex: 1 0 0;
+    align-self: stretch;
+
+    padding: 16px;
+    width: 100vw;
+    height: 100vh;
+    box-sizing: border-box;
+}
