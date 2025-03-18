@@ -19,7 +19,7 @@ const checkAndSyncDatabase  = async () => {
 
         if (missingModels.length > 0) {
             console.log("Some tables are missing, syncing them...");
-            await Promise.all(missingModels.map(model => model.sync()));
+            await Promise.all(missingModels.map(model => model.sync({ alter: true })));
             console.log("Missing tables have been created.");
         } else {
             console.log("All tables exists. No sync needed.");
