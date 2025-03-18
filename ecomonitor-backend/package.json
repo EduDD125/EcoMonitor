@@ -4,7 +4,10 @@
   "description": "backend do sistema EcoMonitor - sistema de monitoramento ambiental",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "concurrently \"nodemon --watch src --exec tsx ./src/app.ts\" \"npx sequelize-cli db:migrate\" \"tsx ./src/database/seed.ts\"",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "tsc",
+    "start": "node dist/js/app.js"
   },
   "author": "Eduardo Duarte Derisso",
   "license": "ISC",
@@ -19,6 +22,8 @@
   },
   "devDependencies": {
     "@types/express": "^5.0.0",
-    "sequelize-cli": "^6.6.2"
+    "concurrently": "^9.1.2",
+    "sequelize-cli": "^6.6.2",
+    "tsx": "^4.19.3"
   }
 }
