@@ -16,6 +16,7 @@ ReadingModel.init(
             type: DataTypes.UUID,
             defaultValue: DataTypes.UUIDV4,
             primaryKey: true,
+            allowNull: false,
         },
         location: {
             type: DataTypes.STRING,
@@ -24,19 +25,22 @@ ReadingModel.init(
         dateTime: {
             type: DataTypes.DATE,
             defaultValue: DataTypes.NOW,
+            field: "dateTime"
         },
         measurementType: {
             type: DataTypes.STRING,
             allowNull: false,
+            field: "measurementType"
         },
         value: {
             type: DataTypes.STRING,
             allowNull: false,
-        },
+        }
     }, 
     {
         sequelize,
         tableName: "reading",
+        timestamps: false,
     }
 
 );

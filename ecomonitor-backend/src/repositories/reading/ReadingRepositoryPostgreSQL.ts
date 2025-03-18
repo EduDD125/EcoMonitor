@@ -10,7 +10,7 @@ export class ReadingRepositoryPostgreSQL implements IReadingRepository {
             location: reading.getLocation(),
             dateTime: reading.getDateTime(),
             measurementType: reading.getMeasurementType(),
-            valeu: reading.getValue(),
+            value: reading.getValue(),
         });
     }
     async update(reading: Reading): Promise<[number, Reading[]]> {
@@ -23,7 +23,7 @@ export class ReadingRepositoryPostgreSQL implements IReadingRepository {
                 value: reading.getValue(),
             },
             {
-                where: { readingId },
+                where: { id: readingId },
                 returning: true, // Retorna os registros atualizados
             }
         );

@@ -23,6 +23,7 @@ LogModel.init(
             type: DataTypes.UUID,
             defaultValue: DataTypes.UUIDV4,
             primaryKey: true,
+            allowNull: false,
         },
         timestamp: {
             type: DataTypes.DATE,
@@ -38,6 +39,7 @@ LogModel.init(
         httpStatus: {
             type: DataTypes.INTEGER,
             allowNull: false,
+            field: "httpStatus"
         },
         method: {
             type: DataTypes.STRING,
@@ -57,27 +59,32 @@ LogModel.init(
         requestIp: {
             type: DataTypes.STRING,
             allowNull: false,
+            field: "requestIp"
         },
         origin: {
-        type: DataTypes.STRING,
-        allowNull: false,
+            type: DataTypes.STRING,
+            allowNull: false,
         },
         userAgent: {
-        type: DataTypes.STRING,
-        allowNull: true,
+            type: DataTypes.STRING,
+            allowNull: true,
+            field: "userAgent"
         },
         stackTrace: {
-        type: DataTypes.TEXT,
-        allowNull: true,
+            type: DataTypes.TEXT,
+            allowNull: true,
+            field: "stackTrace"
         },
         userId: {
-        type: DataTypes.STRING, // todo: verificar se esse tipo é condisente com implementações futuras
-        allowNull: true,
+            type: DataTypes.STRING, // todo: verificar se esse tipo é condisente com implementações futuras
+            allowNull: true,
+            field: "userId"
         },
     },
     {
         sequelize,
-        tableName: "reading",
+        tableName: "log",
+        timestamps: false,
     }
 
 );
