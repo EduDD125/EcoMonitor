@@ -4,7 +4,7 @@
   "description": "backend do sistema EcoMonitor - sistema de monitoramento ambiental",
   "main": "index.js",
   "scripts": {
-    "dev": "concurrently \"nodemon --watch src --exec tsx ./src/app.ts\" \"npx sequelize-cli db:migrate\"",
+    "dev": "\"npx tsx ./src/database/sync.ts && npx sequelize-cli db:migrate && npx tsx ./src/database/seed.ts && nodemon --watch src --exec tsx ./src/app.ts",
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "tsc",
     "start": "node dist/js/app.js"
