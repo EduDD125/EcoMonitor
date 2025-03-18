@@ -7,7 +7,7 @@ import { ILogRepository } from "../../repositories/logs/ILogRepository";
 export class CreateReadingUseCase {
     constructor(
         private readingRepository: IReadingRepository,
-        private logRepository: ILogRepository
+        private logRepository: ILogRepository,
     ) {}
 
     async execute(data: CreateReadingDTO, requestIp: string, userAgent?: string, userId?: string): Promise<Reading> {
