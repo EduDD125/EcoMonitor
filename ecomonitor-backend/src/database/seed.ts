@@ -22,11 +22,15 @@ const sequelize = new Sequelize(
 // Função para executar o arquivo SQL
 const runSeed = async () => {
     try {
+        console.log("🚀 Rodando seed do banco de dados...");
+
+        // Limpando dados antigos
+        await sequelize.query('DELETE FROM "reading";');
+        console.log("🗑️  Dados antigos removidos da tabela 'reading'.");
+        
         // Lendo o arquivo SQL
         const filePath = path.join(__dirname, "insert_readings.sql");
         const sql = fs.readFileSync(filePath, "utf8");
-
-        console.log("🚀 Rodando seed do banco de dados...");
 
         // Executando SQL no banco
         await sequelize.query(sql);
