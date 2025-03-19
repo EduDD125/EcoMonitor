@@ -1,13 +1,32 @@
 .upper-banner__container {
-    display: flex;
-    padding: 10px 40px;
-    justify-content: center;
-    align-items: center;
-    gap: 200px;
-    align-self: stretch;
-
+    position: fixed; /* Fixa no topo */
+    top: 0;
+    left: 0;
     width: 100vw;
+    height: 60px; /* Ajuste conforme necessário */
+    display: flex;
+    justify-content: center; /* Centraliza o logo */
+    align-items: center;
     box-sizing: border-box;
-
     background: rgba(255, 255, 255, 0.65);
+    z-index: 1000; /* Mantém acima de outros elementos */
+    padding: 10px 40px;
+}
+
+.upper-banner__logo {
+    max-height: 50px; /* Ajuste conforme necessário */
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.upper-banner__drawer {
+    position: absolute;
+    right: 10px; /* Mantém o Drawer no máximo à direita */
+}
+
+@media (max-width: 1024px) { 
+    .upper-banner__container {
+        padding: 10px 10px;
+    }
 }
