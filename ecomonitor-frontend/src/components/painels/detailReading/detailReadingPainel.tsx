@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import {
   TextField,
@@ -25,6 +25,11 @@ export default function DetailReadingPainel() {
 
   const { reading, setReading, loading, error } = useFetchReading(id);
   const { saveReading, loading: saving, error: saveError } = useSaveReading(id);
+
+  function formatDateForInput(date: string) {
+    const dt = new Date(date);
+    return dt.toISOString().slice(0, 16); // Garante formato "YYYY-MM-DDTHH:MM"
+  }
 
   // Atualizar estado dos inputs
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -63,7 +68,7 @@ export default function DetailReadingPainel() {
               label="Data/Hora"
               name="dateTime"
               type="datetime-local"
-              value={reading.dateTime}
+              value={formatDateForInput(reading.dateTime)}
               onChange={handleChange}
               fullWidth
             />

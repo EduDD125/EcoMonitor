@@ -1,7 +1,7 @@
 export interface UpdateReadingDTO {
     id: string;
     location: string;
-    dateTime: string;
+    dateTime: Date;
     measurementType: string;
     value: string;
 }

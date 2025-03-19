@@ -8,15 +8,11 @@ interface Reading {
   value: string;
 }
 
-function formatDateForInput(date: string) {
-  const dt = new Date(date);
-  return dt.toISOString().slice(0, 16); // Garante formato "YYYY-MM-DDTHH:MM"
-}
 
 export function useFetchReading(id?: string) {
   const [reading, setReading] = useState<Reading>({
     location: "",
-    dateTime: formatDateForInput(new Date().toISOString()), // Inicializa com data correta
+    dateTime: new Date().toISOString(), // Inicializa com data correta
     measurementType: "",
     value: "",
   });
@@ -32,7 +28,7 @@ export function useFetchReading(id?: string) {
         .then((response) => {
           setReading({
             ...response.data,
-            dateTime: formatDateForInput(response.data.dateTime), // Formata a data ao carregar
+            dateTime: response.data.dateTime, // Formata a data ao carregar
           });
         })
         .catch((err) => {

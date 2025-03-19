@@ -15,6 +15,7 @@ export const useSaveReading = (id?: string) => {
 
   const saveReading = async (reading: Reading) => {
     setLoading(true);
+    console.log("reading", reading);
     try {
       if (isEditing) {
         await api.put(`/api/leituras/${id}`, reading);

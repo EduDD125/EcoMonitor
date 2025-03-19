@@ -24,6 +24,7 @@ export class UpdateReadingUseCase {
             
             const reading = new Reading(
                 data.location,
+                data.dateTime,
                 data.measurementType,
                 data.value,
                 readingId,
