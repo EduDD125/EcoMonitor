@@ -28,5 +28,12 @@
 @media (max-width: 1024px) { 
     .upper-banner__container {
         padding: 10px 10px;
+        background-color: #fff;
+    }
+}
+
+@media (max-width: 811px) { 
+    .upper-banner__logo {
+        height: 24px;
     }
 }
