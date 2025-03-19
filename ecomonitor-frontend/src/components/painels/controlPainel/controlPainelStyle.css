@@ -10,13 +10,6 @@
     background: url("/public/photos/backgrounds/control-painel-background.jpg") lightgray 50% / cover no-repeat;
 }
 
-.drawer-menu__button-container {
-    background-color: #fff;
-    border-radius: 10px;
-    width: min-content;
-    height: min-content;
-}
-
 .control-painel__container {
     display: flex;
     justify-content: space-between;
@@ -24,8 +17,27 @@
     flex: 1 0 0;
     align-self: stretch;
 
+    gap: 20px;
+
     padding: 16px;
     width: 100vw;
     height: 100vh;
     box-sizing: border-box;
+}
+
+.drawer-menu__button-container {
+    background-color: #fff;
+    border-radius: 10px;
+    width: min-content;
+    height: 100%;
+}
+
+.control-painel__content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 40px;
+    flex: 1 0 0;
+    align-self: stretch;
 }
