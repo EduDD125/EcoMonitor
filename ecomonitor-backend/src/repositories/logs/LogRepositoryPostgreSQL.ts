@@ -21,7 +21,9 @@ export class LogRepositoryPostgreSQL implements ILogRepository {
         });
     }
     async findAll(): Promise<Log[]> {
-        const logs = await LogModel.findAll();
+        const logs = await LogModel.findAll({
+            order: [['timestamp', 'DESC']]
+        });
         return logs.map( log => new Log(
             log.level,
             log.httpStatus,

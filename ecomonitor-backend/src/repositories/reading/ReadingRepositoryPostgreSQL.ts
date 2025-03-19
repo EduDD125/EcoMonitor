@@ -39,7 +39,9 @@ export class ReadingRepositoryPostgreSQL implements IReadingRepository {
         return [affectedCount, updatedReadings];
     }
     async findAll(): Promise<Reading[]> {
-        const readings = await ReadingModel.findAll();
+        const readings = await ReadingModel.findAll({
+            order: [['dateTime', 'DESC']]
+        });
         return readings.map( r => new Reading(
             r.location,
             new Date(r.dateTime),
