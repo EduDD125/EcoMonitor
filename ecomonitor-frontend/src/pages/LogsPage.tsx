@@ -1,11 +1,13 @@
 import ControlPainel from "src/components/painels/controlPainel/controlPainel";
-import UpperBanner from "src/components/upperBanner/upperBanner";
+import LogTable from "src/components/tables/log/logTable";
 
 export default function LogsPage() {
     return (
       <>
         <ControlPainel>
-          <div></div>
+          <div>
+            <LogTable />
+          </div>
         </ControlPainel>
       </>
     );
