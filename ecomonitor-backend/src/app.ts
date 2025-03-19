@@ -12,7 +12,7 @@ app.use(corsMiddleware);
 app.use(readingRouter);
 app.use(logRouter);
 
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 5433;
 app.listen(PORT, () => {
     console.log(`Server running in port ${PORT}.`);
 })
