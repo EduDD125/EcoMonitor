@@ -45,8 +45,13 @@ const DrawerMenu: React.FC = () => {
 
   return (
     <>
-      <IconButton onClick={toggleDrawer(true)}>
-        <MenuIcon />
+      <IconButton onClick={toggleDrawer(true)} sx={{display: "flex", flexDirection: "column", height: "100%", justifyContent: "start"}}>
+        <MenuIcon sx={{marginBottom: "20px"}}/>
+        {drawerMenuRoutes.map((item, index) => (
+          <div key={index}>
+            {item.icon}
+          </div>
+        ))}
       </IconButton>
       <Drawer anchor="left" open={open} onClose={toggleDrawer(false)}>
         <List>
