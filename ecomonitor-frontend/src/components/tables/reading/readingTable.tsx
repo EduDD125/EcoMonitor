@@ -19,6 +19,7 @@ import useFetchTablesData from "../../../hooks/useFetchTablesData";
 import { useDeleteItem } from "../../../hooks/useDeleteItem";
 import { GetReadingDTO } from "../../dtos/GetReadingDTO";
 import TableFilter from "src/components/filters/tableFilter";
+import ToastNotification from "src/components/toasts/toastNotification";
 
 const ReadingTable: React.FC = () => {
   const navigate = useNavigate(); // Hook para navegação
@@ -26,6 +27,16 @@ const ReadingTable: React.FC = () => {
   const { deleteItem } = useDeleteItem("/api/leituras");
 
   const [selectedIds, setSelectedIds] = useState<string[]>([]);
+
+  const [toast, setToast] = useState({
+    open: false,
+    message: "",
+    status: 200,
+  });
+
+  const handleShowToast = (message: string, status: number) => {
+    setToast({ open: true, message, status });
+  };
 
   // Selecionar/deselecionar um único item
   const handleSelectItem = (id: string) => {
@@ -48,8 +59,10 @@ const ReadingTable: React.FC = () => {
 
       setData((prev) => prev.filter((reading) => !selectedIds.includes(reading.id)));
       setSelectedIds([]);
+      handleShowToast(`Deleção de leitura bem sucedida`, 200);
     } catch (error) {
       console.error("Erro ao deletar leituras:", error);
+      handleShowToast(`Erro durante deleção`, 500);
     }
   };
 
@@ -107,6 +120,12 @@ const ReadingTable: React.FC = () => {
           </TableBody>
         </Table>
       </TableContainer>
+      <ToastNotification
+        open={toast.open}
+        message={toast.message}
+        status={toast.status}
+        onClose={() => setToast({ ...toast, open: false })}
+      />
     </div>
   );
 };

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import {
   TextField,
@@ -10,6 +10,7 @@ import {
 } from "@mui/material";
 import { useFetchReading } from "../../../hooks/useFetchReading";
 import { useSaveReading } from "../../../hooks/useSaveReading";
+import ToastNotification from "src/components/toasts/toastNotification";
 
 interface Reading {
     location: string;
@@ -31,15 +32,32 @@ export default function DetailReadingPainel() {
     return dt.toISOString().slice(0, 16); // Garante formato "YYYY-MM-DDTHH:MM"
   }
 
+  const [toast, setToast] = useState({
+      open: false,
+      message: "",
+      status: 200,
+    });
+  
+    const handleShowToast = (message: string, status: number) => {
+      setToast({ open: true, message, status });
+    };
+  
+
   // Atualizar estado dos inputs
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setReading({ ...reading, [e.target.name]: e.target.value });
   };
 
 
-  const handleSave = (reading: Reading) => {
-    saveReading(reading)
-  }
+  const handleSave = async (reading: Reading) => {
+    try {
+      await saveReading(reading);
+      handleShowToast(isEditing ? "Leitura editada com sucesso!" : "Leitura salva com sucesso" , 200);
+      setTimeout(() => navigate("/leituras"), 1500); // Redirecionar após sucesso
+    } catch (err) {
+      handleShowToast(isEditing ? "Error ao editar leitura!" : "Erro ao salvar leitura", 500);
+    }
+  };
 
   const handleCancel = () => navigate(-1);
 
@@ -114,6 +132,12 @@ export default function DetailReadingPainel() {
           </Box>
         </Box>
       )}
+      <ToastNotification
+              open={toast.open}
+              message={toast.message}
+              status={toast.status}
+              onClose={() => setToast({ ...toast, open: false })}
+            />
     </Paper>
   );
 }
