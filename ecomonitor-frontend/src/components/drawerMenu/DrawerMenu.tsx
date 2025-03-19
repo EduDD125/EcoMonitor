@@ -50,6 +50,7 @@ const DrawerMenu: React.FC = () => {
       icon: <BarChartIcon />,
       subRoutes: [
         { path: "/leituras/", text: "Registros e Exportação" },
+        { path: "/leituras/nova_leitura", text: "Adicionar registro" },
         { path: "/leituras/estatisticas", text: "Estatísticas" },
       ],
     },

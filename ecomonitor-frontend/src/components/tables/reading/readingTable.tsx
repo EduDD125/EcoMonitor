@@ -14,14 +14,16 @@ import {
   IconButton,
 } from "@mui/material";
 import DeleteIcon from "@mui/icons-material/Delete";
+import { useNavigate } from "react-router-dom";
 import useFetchTablesData from "../../../hooks/useFetchTablesData";
 import { useDeleteItem } from "../../../hooks/useDeleteItem";
 import { GetReadingDTO } from "../../dtos/GetReadingDTO";
 import TableFilter from "src/components/filters/tableFilter";
 
 const ReadingTable: React.FC = () => {
+  const navigate = useNavigate(); // Hook para navegação
   const { data: readings, loading, error, setData } = useFetchTablesData<GetReadingDTO>("/api/leituras");
-  const { deleteItem, status } = useDeleteItem("/api/leituras");
+  const { deleteItem } = useDeleteItem("/api/leituras");
 
   const [selectedIds, setSelectedIds] = useState<string[]>([]);
 
@@ -38,16 +40,23 @@ const ReadingTable: React.FC = () => {
   };
 
   // Deletar itens selecionados
-  const handleDeleteSelected = () => {
+  const handleDeleteSelected = async () => {
     if (selectedIds.length === 0) return;
 
-    selectedIds.map( async item => {
-        await deleteItem(item); 
-        if (status == "error") setSelectedIds((prev) => prev.filter((reading) => !reading.includes(item)))
-    });
-  
-    setData((prev) => prev.filter((reading) => !selectedIds.includes(reading.id)));
-    setSelectedIds([]);
+    try {
+      await Promise.all(selectedIds.map((id) => deleteItem(id)));
+
+      setData((prev) => prev.filter((reading) => !selectedIds.includes(reading.id)));
+      setSelectedIds([]);
+    } catch (error) {
+      console.error("Erro ao deletar leituras:", error);
+    }
+  };
+
+  // Navegar para detalhes da leitura ao clicar na linha (exceto no checkbox)
+  const handleRowClick = (event: React.MouseEvent, id: string) => {
+    if ((event.target as HTMLElement).tagName.toLowerCase() === "input") return; // Ignora clique no checkbox
+    navigate(`/leituras/${id}`); // Navega para a página de detalhes da leitura
   };
 
   if (loading) return <CircularProgress />;
@@ -82,8 +91,8 @@ const ReadingTable: React.FC = () => {
           </TableHead>
           <TableBody sx={{ backgroundColor: "#fff" }}>
             {readings.map((reading) => (
-              <TableRow hover role="checkbox" key={reading.id}>
-                <TableCell>
+              <TableRow hover role="checkbox" key={reading.id} onClick={(event) => handleRowClick(event, reading.id)}>
+                <TableCell onClick={(e) => e.stopPropagation()}>
                   <Checkbox
                     checked={selectedIds.includes(reading.id)}
                     onChange={() => handleSelectItem(reading.id)}
