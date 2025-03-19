@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, useParams } from 'react-router-dom';
 import LandingPage from './pages/LadingPage';
 import ReadingsPage from './pages/ReadingsPage';
 import LogsPage from './pages/LogsPage';
@@ -11,13 +11,18 @@ function App() {
       <Routes>
         <Route path="/" element={<LandingPage />} />
         <Route path="/leituras" element={<ReadingsPage />} />
-        <Route path="/leituras/:id" element={<DetailReadingPage />} />
-        <Route path="/leituras/nova_leitura" element={<DetailReadingPage />} />
+        <Route path="/leituras/:id" element={<DetailReadingWrapper />} />
+        <Route path="/leituras/nova_leitura" element={<DetailReadingWrapper />} />
         <Route path="/logs" element={<LogsPage />} />
         <Route path="/auth" element={<AuthPage />} />
       </Routes>
     </Router>
   );
+}
+
+function DetailReadingWrapper() {
+  const { id } = useParams();
+  return <DetailReadingPage key={id || "new"} />;
 }
 
 export default App;
