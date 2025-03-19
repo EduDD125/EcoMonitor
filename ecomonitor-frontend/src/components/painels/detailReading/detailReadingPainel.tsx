@@ -44,7 +44,15 @@ export default function DetailReadingPainel() {
   const handleCancel = () => navigate(-1);
 
   return (
-    <Paper sx={{ padding: 3, maxWidth: 600, margin: "auto", marginTop: 4 }}>
+    <Paper sx={{ 
+      padding: 3, 
+      maxWidth: 600, 
+      margin: "auto", 
+      marginTop: 4 ,
+      width: "100%",
+      borderRadius: "10px"
+      }}
+    >
       <Typography variant="h5" gutterBottom>
         {isEditing ? "Editar Leitura" : "Nova Leitura"}
       </Typography>
