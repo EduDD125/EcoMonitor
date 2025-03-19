@@ -22,7 +22,7 @@ const useFetchTablesData = <T,>(endpoint: string) => {
     fetchData();
   }, [endpoint]);
 
-  return { data, loading, error };
+  return { data, loading, error, setData };
 };
 
 export default useFetchTablesData;
