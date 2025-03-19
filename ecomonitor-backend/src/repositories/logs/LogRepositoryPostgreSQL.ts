@@ -25,6 +25,7 @@ export class LogRepositoryPostgreSQL implements ILogRepository {
         return logs.map( log => new Log(
             log.level,
             log.httpStatus,
+            log.timestamp,
             log.method,
             log.endpoint,
             log.message,
@@ -42,6 +43,7 @@ export class LogRepositoryPostgreSQL implements ILogRepository {
         return new Log(
             log.level,
             log.httpStatus,
+            log.timestamp,
             log.method,
             log.endpoint,
             log.message,

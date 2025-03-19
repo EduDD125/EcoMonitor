@@ -8,10 +8,10 @@ export class Reading {
   private measurementType: string;
   private value: string;
 
-  constructor(location: string, measurementType: string, value: string, id?: UUID) {
+  constructor(location: string, dateTime: Date | null, measurementType: string, value: string, id?: UUID) {
     this.id = id ?? idStrategy(); 
     this.location = location;
-    this.dateTime = new Date();
+    this.dateTime = dateTime ?? new Date();
     this.measurementType = measurementType;
     this.value = value;
   }

@@ -14,7 +14,7 @@ export class CreateReadingUseCase {
         const logService = new LogService(this.logRepository);
 
         try {
-            const reading = new Reading(data.location, data.measurementType, data.value);
+            const reading = new Reading(data.location, null, data.measurementType, data.value);
             await this.readingRepository.save(reading);
             
             // Criar log de sucesso usando LogService

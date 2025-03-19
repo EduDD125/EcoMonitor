@@ -18,6 +18,7 @@ export class Log {
   constructor(
     level: "INFO" | "WARN" | "ERROR" | "DEBUG",
     httpStatus: number,
+    timestamp: Date | null,
     method: "GET" | "POST" | "PUT" | "DELETE" | "REQUEST",
     endpoint: string,
     message: string,
@@ -28,7 +29,7 @@ export class Log {
     userId?: string
   ) {
     this.id = idStrategy();
-    this.timestamp = new Date();
+    this.timestamp = timestamp ?? new Date();
     this.level = level;
     this.httpStatus = httpStatus;
     this.method = method;

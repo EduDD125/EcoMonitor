@@ -30,6 +30,7 @@ export class ReadingRepositoryPostgreSQL implements IReadingRepository {
 
         const updatedReadings = updatedReadingsModels.map( r => new Reading(
             r.location,
+            new Date(r.dateTime),
             r.measurementType,
             r.value,
             r.id,
@@ -41,6 +42,7 @@ export class ReadingRepositoryPostgreSQL implements IReadingRepository {
         const readings = await ReadingModel.findAll();
         return readings.map( r => new Reading(
             r.location,
+            new Date(r.dateTime),
             r.measurementType,
             r.value,
             r.id
@@ -53,6 +55,7 @@ export class ReadingRepositoryPostgreSQL implements IReadingRepository {
 
         return new Reading(
             reading.location,
+            new Date(reading.dateTime),
             reading.measurementType,
             reading.value,
             reading.id

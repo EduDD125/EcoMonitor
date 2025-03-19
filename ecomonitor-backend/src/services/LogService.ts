@@ -14,6 +14,7 @@ export class LogService {
         const log = new Log(
             "INFO",
             201,
+            new Date(),
             "POST",
             endpoint,
             `${entityName} created successfully`,
@@ -38,6 +39,7 @@ export class LogService {
         const log = new Log(
             "ERROR",
             500,
+            new Date(),
             "POST",
             endpoint,
             `Failed to create ${entityName}`,
@@ -61,6 +63,7 @@ export class LogService {
         const log = new Log(
             "INFO",
             200,
+            new Date(),
             "DELETE",
             endpoint,
             `${entityName} deleted successfully`,
@@ -85,6 +88,7 @@ export class LogService {
         const log = new Log(
             "ERROR",
             500,
+            new Date(),
             "DELETE",
             endpoint,
             `Failed to delete ${entityName}`,
@@ -109,6 +113,7 @@ export class LogService {
         const log = new Log(
             "WARN",
             400,
+            new Date(),
             "REQUEST",
             endpoint,
             `Invalid UUID format received for ${entityName}: ${receivedId}`,
@@ -132,6 +137,7 @@ export class LogService {
         const log = new Log(
             "INFO",
             200,
+            new Date(),
             "GET",
             endpoint,
             `Successfully retrieved all ${entityName}`,
@@ -156,6 +162,7 @@ export class LogService {
         const log = new Log(
             "WARN",
             404,
+            new Date(),
             "GET",
             endpoint,
             `Problem trying to retriever ${entityName} from the data base`,
@@ -173,6 +180,7 @@ export class LogService {
         const log = new Log(
             "INFO",
             200,
+            new Date(),
             "GET",
             endpoint,
             `Successfully retrieved ${entityName} with ID: ${itemId}`,
@@ -190,6 +198,7 @@ export class LogService {
         const log = new Log(
             "WARN",
             404,
+            new Date(),
             "GET",
             endpoint,
             `${entityName} with ID: ${itemId} not found`,
@@ -214,6 +223,7 @@ export class LogService {
         const log = new Log(
             "INFO",
             200,
+            new Date(),
             "PUT",
             endpoint,
             `Successfully updated ${entityName} with ID: ${itemId}`,
@@ -239,6 +249,7 @@ export class LogService {
         const log = new Log(
             "ERROR",
             500,
+            new Date(),
             "PUT",
             endpoint,
             `Failed to update ${entityName} with ID: ${itemId}`,
