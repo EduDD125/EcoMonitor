@@ -1,3 +1,4 @@
+import "./../tablesStyle.css"
 import React from "react";
 import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, CircularProgress, Typography } from "@mui/material";
 import useFetchTablesData from "../../../hooks/useFetchTablesData";
@@ -10,28 +11,30 @@ const ReadingTable: React.FC = () => {
   if (error) return <Typography color="error">{error}</Typography>;
 
   return (
-    <TableContainer component={Paper}>
-      <Table>
-        <TableHead>
-          <TableRow>
-            <TableCell>Localização</TableCell>
-            <TableCell>Data/Hora</TableCell>
-            <TableCell>Tipo de Medida</TableCell>
-            <TableCell>Valor</TableCell>
-          </TableRow>
-        </TableHead>
-        <TableBody>
-          {readings.map((reading, index) => (
-            <TableRow key={index}>
-              <TableCell>{reading.location}</TableCell>
-              <TableCell>{new Date(reading.dateTime).toLocaleString()}</TableCell>
-              <TableCell>{reading.measurementType}</TableCell>
-              <TableCell>{reading.value}</TableCell>
+    <div className="entity-table__container">
+      <TableContainer component={Paper} sx={{ maxHeight: 440, width: "min-content", backgroundColor: "#333" }} >
+        <Table stickyHeader aria-label="sticky table">
+          <TableHead sx={{ backgroundColor: "#333" }}>
+            <TableRow>
+              <TableCell sx={{ backgroundColor: "#333", color: "#fff" }}>Localização</TableCell>
+              <TableCell sx={{ backgroundColor: "#333", color: "#fff" }}>Data/Hora</TableCell>
+              <TableCell sx={{ backgroundColor: "#333", color: "#fff" }}>Tipo de Medida</TableCell>
+              <TableCell sx={{ backgroundColor: "#333", color: "#fff" }}>Valor</TableCell>
             </TableRow>
-          ))}
-        </TableBody>
-      </Table>
-    </TableContainer>
+          </TableHead>
+          <TableBody sx={{ backgroundColor: "#fff" }}>
+            {readings.map((reading, index) => (
+              <TableRow hover role="checkbox" key={index}>
+                <TableCell>{reading.location}</TableCell>
+                <TableCell>{new Date(reading.dateTime).toLocaleString()}</TableCell>
+                <TableCell>{reading.measurementType}</TableCell>
+                <TableCell>{reading.value}</TableCell>
+              </TableRow>
+            ))}
+          </TableBody>
+        </Table>
+      </TableContainer>
+    </div>
   );
 };
 
