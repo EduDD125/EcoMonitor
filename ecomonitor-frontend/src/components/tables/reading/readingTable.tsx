@@ -17,10 +17,10 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import { useNavigate } from "react-router-dom";
 import useFetchTablesData from "../../../hooks/useFetchTablesData";
 import { useDeleteItem } from "../../../hooks/useDeleteItem";
-import { GetReadingDTO } from "../../dtos/GetReadingDTO";
 import TableFilter from "src/components/filters/tableFilter";
 import ToastNotification from "src/components/toasts/toastNotification";
 import { useAppContext } from "src/hooks/useAppContext";
+import { GetReadingDTO } from "src/components/dtos/GetReadingDTO";
 
 const ReadingTable: React.FC = () => {
   const navigate = useNavigate(); 
@@ -89,7 +89,7 @@ const ReadingTable: React.FC = () => {
         height: "100%",
       }}>
 
-        
+
       <TableFilter 
         onUpdateTable={setData} 
         options1={locations} 

@@ -16,7 +16,7 @@ import {
 import { useFetchReading } from "../../../hooks/useFetchReading";
 import { useSaveReading } from "../../../hooks/useSaveReading";
 import ToastNotification from "src/components/toasts/toastNotification";
-import { Reading } from "src/interfaces/readingInterface";
+import { IReading } from "src/interfaces/reading";
 import { useAppContext } from "src/hooks/useAppContext";
 
 
@@ -56,7 +56,7 @@ export default function DetailReadingPainel() {
   }
 
 
-  const handleSave = async (reading: Reading) => {
+  const handleSave = async (reading: IReading) => {
     try {
       console.log("reading:", reading);
       await saveReading(reading);

@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
 import api from "../services/api";
-import { Reading } from "src/interfaces/readingInterface";
+import { IReading } from "src/interfaces/reading";
 
 
 
 export function useFetchReading(id?: string) {
-  const [reading, setReading] = useState<Reading>({
+  const [reading, setReading] = useState<IReading>({
     location: "",
     dateTime: new Date().toISOString(), // Inicializa com data correta
     measurementType: "",

@@ -1,6 +1,6 @@
 import { useState } from "react";
 import api from "../services/api";
-import { Reading } from "src/interfaces/readingInterface";
+import { IReading } from "src/interfaces/reading";
 
 
 
@@ -9,7 +9,7 @@ export const useSaveReading = (id?: string) => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
-  const saveReading = async (reading: Reading) => {
+  const saveReading = async (reading: IReading) => {
     setLoading(true);
     console.log("reading", reading);
     try {
