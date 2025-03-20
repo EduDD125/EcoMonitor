@@ -17,6 +17,7 @@ import { useFetchReading } from "../../../hooks/useFetchReading";
 import { useSaveReading } from "../../../hooks/useSaveReading";
 import ToastNotification from "src/components/toasts/toastNotification";
 import { Reading } from "src/interfaces/reading";
+import { useAppContext } from "src/hooks/useAppContext";
 
 
 export default function DetailReadingPainel() {
@@ -24,8 +25,7 @@ export default function DetailReadingPainel() {
   const navigate = useNavigate();
   const isEditing = Boolean(id);
 
-  const locations = ["São Paulo", "Rio de Janeiro"];
-  const measurementTypes = ["Humidade do Ar", "Temperatura", "CO2 na atmosfera"];
+  const { locations, measurementTypes } = useAppContext();
 
   const { reading, setReading, loading, error } = useFetchReading(id);
   const { saveReading, loading: saving, error: saveError } = useSaveReading(id);
