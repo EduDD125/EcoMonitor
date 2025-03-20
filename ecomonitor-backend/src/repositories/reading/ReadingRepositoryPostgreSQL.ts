@@ -3,9 +3,9 @@ import { Reading } from '../../domain/leitura/reading';
 import { IReadingRepository } from './IReadingRepository'
 import { ReadingModel } from '../../models/ReadingModel';
 import { Op } from 'sequelize';
+import sequelize from 'sequelize';
 
-export class ReadingRepositoryPostgreSQL implements IReadingRepository {
-    
+export class ReadingRepositoryPostgreSQL implements IReadingRepository {  
     async save(reading: Reading): Promise<void> {
         await ReadingModel.create({
             id: reading.getId(),
@@ -90,6 +90,28 @@ export class ReadingRepositoryPostgreSQL implements IReadingRepository {
             r.id
         ));
     }
+
+    async getStatistics(): Promise<Reading[]> {
+        const readings = await ReadingModel.findAll({
+          attributes: [
+            "measurementType",
+            [sequelize.fn("AVG", sequelize.cast(sequelize.col("value"), "NUMERIC")), "avg_value"],
+            [sequelize.fn("MAX", sequelize.cast(sequelize.col("value"), "NUMERIC")), "max_value"],
+            [sequelize.fn("MIN", sequelize.cast(sequelize.col("value"), "NUMERIC")), "min_value"]
+          ],
+          group: ["measurementType"],
+        });
+    
+        return readings.map(r => new Reading(
+            r.location,
+            new Date(r.dateTime),
+            r.measurementType,
+            r.value,
+            r.id
+        ));
+    }
+    
+      
 
     async delete(id: UUID): Promise<number> {
         return await ReadingModel.destroy({ where: {id} });

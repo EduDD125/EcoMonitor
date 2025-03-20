@@ -5,6 +5,8 @@ const readingRouter = Router();
 const readingController = new ReadingController();
 
 readingRouter.post("/api/leituras", (req, res) => readingController.create(req, res));
+
+readingRouter.get("/api/leituras/estatisticas", (req, res) => readingController.getStatistics(req, res));
 readingRouter.get("/api/leituras", (req, res) => {
     if (Object.keys(req.query).length > 0) {
         readingController.getByFilter(req, res); // Se há parâmetros, chamar a filtragem

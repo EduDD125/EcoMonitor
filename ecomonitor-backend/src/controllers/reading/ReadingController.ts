@@ -10,6 +10,7 @@ import { CreateReadingDTO } from "../../dtos/reading/CreateReadingDTO";
 import { UpdateReadingDTO } from "../../dtos/reading/UpdateReading";
 import { DeleteReadingDTO } from "../../dtos/reading/DeleteReadingDTO";
 import { FilterReadingsUseCase } from "../../useCases/leitura/FilterReadingsUseCase";
+import { CalculateReadingStatisticsUseCase } from "../../useCases/leitura/CalculateReadingStatisticsUseCase";
 
 export class ReadingController {
     private readingRepository = new ReadingRepositoryPostgreSQL();
@@ -21,6 +22,21 @@ export class ReadingController {
     private updateReadingUseCase = new UpdateReadingUseCase(this.readingRepository, this.logRepository);
     private deleteReadingUseCase = new DeleteReadingUseCase(this.readingRepository, this.logRepository);
     private filterReadingsUseCase = new FilterReadingsUseCase(this.readingRepository, this.logRepository);
+    private calculateReadingStatisticsUseCase = new CalculateReadingStatisticsUseCase(this.readingRepository, this.logRepository)
+
+
+
+    async getStatistics(req: any, res: any) {
+        try {
+            const requestIp = req.ip;
+            const userAgent = req.get("User-Agent") || "";
+
+            const readings = await this.calculateReadingStatisticsUseCase.execute(requestIp as string, userAgent); // todo: pensar como pegar id de usuário para parametro UserID
+            return res.status(200).json(readings);
+        } catch (error: any) {
+            return res.status(404).json({ error: error.message });
+        }
+    }
 
     async create(req: any, res: any) {
         try {

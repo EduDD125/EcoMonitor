@@ -260,12 +260,36 @@ export class LogService {
     
         await this.logRepository.save(log);
     }
-    
-    async logUpdateSuccess(
+
+    async logGetStatisticSuccess(
         entityName: string,
         endpoint: string,
-        itemId: string,
         requestIp: string,
+        userAgent?: string,
+        userId?: string
+    ): Promise<void> {
+        const log = new Log(
+            "INFO",
+            200,
+            new Date(),
+            "GET",
+            endpoint,
+            `Successfully retrieved ${entityName}'s statistics`,
+            requestIp,
+            "Backend",
+            userAgent,
+            undefined,
+            userId
+        );
+
+        await this.logRepository.save(log);
+    }
+    
+    async logUGetStatisticError(
+        entityName: string,
+        endpoint: string,
+        requestIp: string,
+        errosStack?: string,
         userAgent?: string,
         userId?: string
     ): Promise<void> {
@@ -275,11 +299,11 @@ export class LogService {
             new Date(),
             "PUT",
             endpoint,
-            `Successfully updated ${entityName} with ID: ${itemId}`,
+            `Problem trying to retriver statistics of ${entityName}s`,
             requestIp,
             "Backend",
             userAgent,
-            undefined,
+            errosStack,
             userId
         );
     
