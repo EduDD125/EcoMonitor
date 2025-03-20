@@ -4,7 +4,8 @@ import ReadingsPage from './pages/ReadingsPage';
 import LogsPage from './pages/LogsPage';
 import AuthPage from './pages/AuthPage';
 import DetailReadingPage from './pages/DetailReadingPage';
-import ReadingStatistics from './pages/ReadingStatistics';
+import ReadingStatistics from './pages/ReadingsStatistics';
+import LogsStatistics from './pages/LogsStatistics';
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
         <Route path="/leituras" element={<ReadingsPage />} />
         <Route path="/leituras/:id" element={<DetailReadingWrapper />} />
         <Route path="/leituras/estatisticas" element={<ReadingStatistics />} />
+        <Route path="/logs/estatisticas" element={<LogsStatistics />} />
         <Route path="/leituras/nova_leitura" element={<DetailReadingWrapper />} />
         <Route path="/logs" element={<LogsPage />} />
         <Route path="/auth" element={<AuthPage />} />
