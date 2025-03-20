@@ -1,12 +1,8 @@
 import { useState } from "react";
 import api from "../services/api";
+import { Reading } from "src/interfaces/reading";
 
-interface Reading {
-  location: string;
-  dateTime: string;
-  measurementType: string;
-  value: string;
-}
+
 
 export const useSaveReading = (id?: string) => {
   const isEditing = Boolean(id);

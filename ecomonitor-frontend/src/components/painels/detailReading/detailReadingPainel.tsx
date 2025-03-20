@@ -16,13 +16,8 @@ import {
 import { useFetchReading } from "../../../hooks/useFetchReading";
 import { useSaveReading } from "../../../hooks/useSaveReading";
 import ToastNotification from "src/components/toasts/toastNotification";
+import { Reading } from "src/interfaces/reading";
 
-interface Reading {
-    location: string;
-    dateTime: string;
-    measurementType: string;
-    value: string;
-  }
 
 export default function DetailReadingPainel() {
   const { id } = useParams();

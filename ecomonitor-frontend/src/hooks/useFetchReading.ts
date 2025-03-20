@@ -1,12 +1,7 @@
 import { useEffect, useState } from "react";
 import api from "../services/api";
+import { Reading } from "src/interfaces/reading";
 
-interface Reading {
-  location: string;
-  dateTime: string;
-  measurementType: string;
-  value: string;
-}
 
 
 export function useFetchReading(id?: string) {
