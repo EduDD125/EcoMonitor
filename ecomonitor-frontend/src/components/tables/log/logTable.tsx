@@ -21,8 +21,17 @@ const LogTable: React.FC = () => {
   if (error) return <Typography color="error">{error}</Typography>;
 
   return (
-    <div className="entity-table__container">
-      <TableContainer component={Paper} sx={{ maxHeight: 440, width: "min-content", backgroundColor: "#333" }} >
+    <div className="entity-table__container"
+      style={{
+        width: "100%",
+        display: "flex",
+        flexDirection: "column",
+        gap: "40px",
+        height: "100%"
+
+      }}
+    >
+      <TableContainer component={Paper} sx={{ height: "100%", width: "100%", backgroundColor: "#333" }} >
         <Table stickyHeader aria-label="sticky table" >
           <TableHead >
             <TableRow>
