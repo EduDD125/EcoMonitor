@@ -13,10 +13,9 @@ export class FilterReadingsUseCase {
         const logService = new LogService(this.logRepository);
 
         try {
-            console.log("\n\nuseCase\n\n", filter, "\n\n");
             const readings = await this.readingRepository.findByFilter(filter);
-
-            if (!readings) throw new Error("There're no Readings register in the system.")
+            console.log("\n\nisso mesmo",readings,"\n\n");
+            if (!readings  || readings.length === 0) throw new Error("There're no Readings register in the system.")
             
             await logService.logGetItensByFilterSuccess("Reading", "/api/leituras", requestIp, userAgent, userId);
             return readings;
