@@ -7,7 +7,7 @@ export class ReadingModel extends Model {
     public location!: string;
     public dateTime!: string;
     public measurementType!: string;
-    public value!: string;
+    public value!: number;
 }
 
 ReadingModel.init(
@@ -33,7 +33,7 @@ ReadingModel.init(
             field: "measurementType"
         },
         value: {
-            type: DataTypes.STRING,
+            type: DataTypes.FLOAT,
             allowNull: false,
         }
     }, 

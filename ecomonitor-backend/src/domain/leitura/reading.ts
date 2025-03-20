@@ -6,9 +6,9 @@ export class Reading {
   private location: string;
   private dateTime: Date;
   private measurementType: string;
-  private value: string;
+  private value: number;
 
-  constructor(location: string, dateTime: Date | null, measurementType: string, value: string, id?: UUID) {
+  constructor(location: string, dateTime: Date | null, measurementType: string, value: number, id?: UUID) {
     this.id = id ?? idStrategy(); 
     this.location = location;
     this.dateTime = dateTime ?? new Date();
@@ -40,17 +40,17 @@ export class Reading {
     this.measurementType = measurementType;
   }
 
-  getValue(): string {
+  getValue(): number {
     return this.value;
   }
 
-  setValue(value: string): void {
+  setValue(value: number): void {
     this.value = value;
   }
 
   toString(): string {
     return `Reading ID: ${this.getId()} | Location: ${this.getLocation()} |
-    DateTime: ${this.getDateTime()} | MeasurementType: ${this.getMeasurementType()} |
-    Value: ${this.getValue()}`;
+    DateTime: ${this.getDateTime().toISOString} | MeasurementType: ${this.getMeasurementType()} |
+    Value: ${this.getValue().toString()}`;
   }
 }

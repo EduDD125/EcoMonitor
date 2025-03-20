@@ -3,6 +3,6 @@ export interface UpdateReadingDTO {
     location: string;
     dateTime: Date;
     measurementType: string;
-    value: string;
+    value: number;
 }
   

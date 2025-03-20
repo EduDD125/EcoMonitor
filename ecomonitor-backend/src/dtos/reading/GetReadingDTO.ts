@@ -3,5 +3,5 @@ export interface GetReadingDTO {
     location: string;
     dateTime: string;
     measurementType: string;
-    value: string;
+    value: number;
 }
