@@ -63,7 +63,7 @@ const TableFilter: React.FC<TableFilterProps> = ({ onUpdateTable, options1, opti
   return (
     <Box 
       display="flex" 
-      flexDirection="row" 
+      flexDirection={window.innerWidth > 1024 ? "row" :"column"} 
       alignItems="center" 
       gap={2} 
       padding={2} 
@@ -71,13 +71,14 @@ const TableFilter: React.FC<TableFilterProps> = ({ onUpdateTable, options1, opti
       sx={{ backgroundColor: "rgba(255, 255, 255, 0.8)" }}
     >
       
-      <FormControl>
+      <FormControl sx={{display: "flex", width: "100%"}}>
         <InputLabel>Localizações</InputLabel>
         <Select
           multiple
           value={selectedOptions1}
           onChange={handleSelectChange1}
           renderValue={(selected) => selected.join(", ")}
+          sx={{width: "100%", height: "40px"}}
         >
           {options1.map((option) => (
             <MenuItem key={option} value={option}>
@@ -88,13 +89,14 @@ const TableFilter: React.FC<TableFilterProps> = ({ onUpdateTable, options1, opti
         </Select>
       </FormControl>
       
-      <FormControl>
+      <FormControl sx={{display: "flex", width: "100%"}}>
         <InputLabel>Tipos de Medida</InputLabel>
         <Select
           multiple
           value={selectedOptions2}
           onChange={handleSelectChange2}
           renderValue={(selected) => selected.join(", ")}
+          sx={{width: "100%", height: "40px"}}
         >
           {options2.map((option) => (
             <MenuItem key={option} value={option}>
@@ -105,7 +107,7 @@ const TableFilter: React.FC<TableFilterProps> = ({ onUpdateTable, options1, opti
         </Select>
       </FormControl>
 
-      <Button variant="contained" color="primary" onClick={handleSearch}>
+      <Button sx={{width: "200px"}} variant="contained" color="primary" onClick={handleSearch}>
         Pesquisar
       </Button>
     </Box>

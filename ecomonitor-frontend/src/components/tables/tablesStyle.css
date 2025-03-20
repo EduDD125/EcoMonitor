@@ -1,5 +1,4 @@
 .entity-table__container{
-    max-height: 800px;
 }
 
 @media (max-width: 1025px) {

@@ -78,17 +78,24 @@ const ReadingTable: React.FC = () => {
   if (error) return <Typography color="error">{error}</Typography>;
 
   return (
-    <div className="entity-table__container">
+    <div className="entity-table__container" 
+      style={{
+        width: "100%",
+        display: "flex",
+        flexDirection: "column",
+        gap: "40px",
+        height: "100%",
+      }}>
       <TableFilter 
         onUpdateTable={setData} 
         options1={["São Paulo", "Rio de Janeiro"]} 
         options2={["Humidade do Ar", "Temperatura", "CO2 na atmosfera"]} 
       />
-      <TableContainer component={Paper} sx={{ maxHeight: 440, width: "100%", backgroundColor: "#333" }}>
-        <Table stickyHeader aria-label="sticky table">
+      <TableContainer component={Paper} sx={{ maxHeight: "auto", width: "100%",backgroundColor: "rgba(255,255,255,0.8)" }}>
+      <Table stickyHeader aria-label="sticky table" size="small">
           <TableHead sx={{ backgroundColor: "#333" }}>
-            <TableRow>
-              <TableCell sx={{ backgroundColor: "#333", color: "#fff" }}>
+            <TableRow sx={{ backgroundColor: "rgba(255,255,255,0.1)", height: "40px" }}>
+              <TableCell sx={{ backgroundColor: "#333", color: "#fff", padding: "8px" }}>
                 <Checkbox
                   checked={selectedIds.length === readings.length && readings.length > 0}
                   indeterminate={selectedIds.length > 0 && selectedIds.length < readings.length}
@@ -98,29 +105,36 @@ const ReadingTable: React.FC = () => {
                   <DeleteIcon color={selectedIds.length > 0 ? "error" : "disabled"} />
                 </IconButton>
               </TableCell>
-              <TableCell sx={{ backgroundColor: "#333", color: "#fff" }}>Localização</TableCell>
-              <TableCell sx={{ backgroundColor: "#333", color: "#fff" }}>Data/Hora</TableCell>
-              <TableCell sx={{ backgroundColor: "#333", color: "#fff" }}>Tipo de Medida</TableCell>
-              <TableCell sx={{ backgroundColor: "#333", color: "#fff" }}>Valor</TableCell>
+              <TableCell sx={{ backgroundColor: "#333", color: "#fff", padding: "8px" }}>Localização</TableCell>
+              <TableCell sx={{ backgroundColor: "#333", color: "#fff", padding: "8px" }}>Data/Hora</TableCell>
+              <TableCell sx={{ backgroundColor: "#333", color: "#fff", padding: "8px" }}>Tipo de Medida</TableCell>
+              <TableCell sx={{ backgroundColor: "#333", color: "#fff", padding: "8px" }}>Valor</TableCell>
             </TableRow>
           </TableHead>
-          <TableBody sx={{ backgroundColor: "#fff" }}>
+          <TableBody sx={{ backgroundColor: "rgba(255,255,255,0.1)" }}>
             {readings.map((reading) => (
-              <TableRow hover role="checkbox" key={reading.id} onClick={(event) => handleRowClick(event, reading.id)}>
-                <TableCell onClick={(e) => e.stopPropagation()}>
+              <TableRow 
+                sx={{ backgroundColor: "rgba(255,255,255,0.1)", height: "40px" }} 
+                hover 
+                role="checkbox" 
+                key={reading.id} 
+                onClick={(event) => handleRowClick(event, reading.id)}
+              >
+                <TableCell sx={{ backgroundColor: "rgba(255,255,255,0.1)", padding: "8px" }} onClick={(e) => e.stopPropagation()}>
                   <Checkbox
                     checked={selectedIds.includes(reading.id)}
                     onChange={() => handleSelectItem(reading.id)}
                   />
                 </TableCell>
-                <TableCell>{reading.location}</TableCell>
-                <TableCell>{new Date(reading.dateTime).toLocaleString()}</TableCell>
-                <TableCell>{reading.measurementType}</TableCell>
-                <TableCell>{reading.value}</TableCell>
+                <TableCell sx={{ backgroundColor: "rgba(255,255,255,0.1)", padding: "8px" }}>{reading.location}</TableCell>
+                <TableCell sx={{ backgroundColor: "rgba(255,255,255,0.1)", padding: "8px" }}>{new Date(reading.dateTime).toLocaleString()}</TableCell>
+                <TableCell sx={{ backgroundColor: "rgba(255,255,255,0.1)", padding: "8px" }}>{reading.measurementType}</TableCell>
+                <TableCell sx={{ backgroundColor: "rgba(255,255,255,0.1)", padding: "8px" }}>{reading.value}</TableCell>
               </TableRow>
             ))}
           </TableBody>
         </Table>
+
       </TableContainer>
       <ToastNotification
         open={toast.open}
