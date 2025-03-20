@@ -10,6 +10,7 @@ const mockReadingRepository: jest.Mocked<IReadingRepository> = {
     save: jest.fn(),
     findAll: jest.fn(),
     findById: jest.fn(),
+    getStatistics: jest.fn(),
     delete: jest.fn(),
     update: jest.fn(),
 };
@@ -25,8 +26,8 @@ const filterReadingsUseCase = new FilterReadingsUseCase(mockReadingRepository, m
 
 describe("FilterReadingsUseCase", () => {
     const mockReadings: Reading[] = [
-        new Reading("São Paulo", new Date(), "Temperatura", "30", randomUUID()),
-        new Reading("Rio de Janeiro", new Date(), "Humidade do Ar", "80", randomUUID()),
+        new Reading("São Paulo", new Date(), "Temperatura", 30, randomUUID()),
+        new Reading("Rio de Janeiro", new Date(), "Humidade do Ar", 80, randomUUID()),
     ];
 
     it("deve retornar leituras filtradas com sucesso", async () => {
