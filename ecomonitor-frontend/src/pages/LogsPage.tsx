@@ -5,9 +5,7 @@ export default function LogsPage() {
     return (
       <>
         <ControlPainel>
-          <div>
             <LogTable />
-          </div>
         </ControlPainel>
       </>
     );
