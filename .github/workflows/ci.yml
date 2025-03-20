@@ -1,21 +1,54 @@
-name: Teste do Workflow
+name: CI - Backend e Frontend
 
-on: push
+on: push  # Executa o workflow a cada push
 
 jobs:
-  test-job:
+  backend-tests:
+    name: Testes do Backend
     runs-on: ubuntu-latest
+
     steps:
       - name: Checkout do repositório
         uses: actions/checkout@v4
-      
+
       - name: Configuração do Node.js
         uses: actions/setup-node@v4
         with:
           node-version: 20
+          cache: "npm"
+          cache-dependency-path: ecomonitor-backend/package-lock.json
 
-      - name: Instalar dependências
-        run: npm install
+      - name: Instalar dependências do Backend
+        run: |
+          cd ecomonitor-backend
+          npm install
 
-      - name: Rodar testes
-        run: npm test
+      - name: Rodar testes do Backend
+        run: |
+          cd ecomonitor-backend
+          npm test
+
+  frontend-tests:
+    name: Testes do Frontend
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout do repositório
+        uses: actions/checkout@v4
+
+      - name: Configuração do Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: "npm"
+          cache-dependency-path: ecomonitor-frontend/package-lock.json
+
+      - name: Instalar dependências do Frontend
+        run: |
+          cd ecomonitor-frontend
+          npm install
+
+      - name: Rodar testes do Frontend
+        run: |
+          cd ecomonitor-frontend
+          npm test
