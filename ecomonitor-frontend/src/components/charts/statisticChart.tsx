@@ -27,9 +27,10 @@ const StatisticsChart: React.FC = () => {
             <CartesianGrid strokeDasharray="3 3" stroke="#000" />
             <Tooltip />
             <Legend />
-            <Bar dataKey="avg_value" fill="#74c0fc" radius={[8, 8, 0, 0]} />
-            <Bar dataKey="max_value" fill="#a5d8ff" radius={[8, 8, 0, 0]} />
-            <Bar dataKey="min_value" fill="#c5e1ff" radius={[8, 8, 0, 0]} />
+            <Bar dataKey="avg_value" fill="#0077b6" radius={[8, 8, 0, 0]} />  // Azul escuro forte
+            <Bar dataKey="max_value" fill="#0096c7" radius={[8, 8, 0, 0]} />  // Azul médio vibrante
+            <Bar dataKey="min_value" fill="#00b4d8" radius={[8, 8, 0, 0]} />  // Azul claro intenso
+
             </BarChart>
         </ResponsiveContainer>
         </div>
