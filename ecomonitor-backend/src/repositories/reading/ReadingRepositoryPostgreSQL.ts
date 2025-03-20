@@ -91,25 +91,17 @@ export class ReadingRepositoryPostgreSQL implements IReadingRepository {
         ));
     }
 
-    async getStatistics(): Promise<Reading[]> {
-        const readings = await ReadingModel.findAll({
+    async getStatistics() {
+        return await ReadingModel.findAll({
           attributes: [
             "measurementType",
-            [sequelize.fn("AVG", sequelize.cast(sequelize.col("value"), "NUMERIC")), "avg_value"],
-            [sequelize.fn("MAX", sequelize.cast(sequelize.col("value"), "NUMERIC")), "max_value"],
-            [sequelize.fn("MIN", sequelize.cast(sequelize.col("value"), "NUMERIC")), "min_value"]
+            [sequelize.fn("AVG", sequelize.col("value")), "avg_value"],
+            [sequelize.fn("MAX", sequelize.col("value")), "max_value"],
+            [sequelize.fn("MIN", sequelize.col("value")), "min_value"]
           ],
           group: ["measurementType"],
         });
-    
-        return readings.map(r => new Reading(
-            r.location,
-            new Date(r.dateTime),
-            r.measurementType,
-            r.value,
-            r.id
-        ));
-    }
+      }
     
       
 
