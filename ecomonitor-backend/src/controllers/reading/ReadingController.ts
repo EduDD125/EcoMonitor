@@ -9,6 +9,7 @@ import { LogRepositoryPostgreSQL } from "../../repositories/logs/LogRepositoryPo
 import { CreateReadingDTO } from "../../dtos/reading/CreateReadingDTO";
 import { UpdateReadingDTO } from "../../dtos/reading/UpdateReading";
 import { DeleteReadingDTO } from "../../dtos/reading/DeleteReadingDTO";
+import { FilterReadingsUseCase } from "../../useCases/leitura/FilterReadingsUseCase";
 
 export class ReadingController {
     private readingRepository = new ReadingRepositoryPostgreSQL();
@@ -19,6 +20,7 @@ export class ReadingController {
     private getReadingByIdUseCase = new GetReadingByIdUseCase(this.readingRepository, this.logRepository);
     private updateReadingUseCase = new UpdateReadingUseCase(this.readingRepository, this.logRepository);
     private deleteReadingUseCase = new DeleteReadingUseCase(this.readingRepository, this.logRepository);
+    private filterReadingsUseCase = new FilterReadingsUseCase(this.readingRepository, this.logRepository);
 
     async create(req: any, res: any) {
         try {
@@ -33,6 +35,31 @@ export class ReadingController {
             return res.status(201).json(reading);
         } catch (error: any) {
             return res.status(500).json({ error: error.message });
+        }
+    }
+
+    async getByFilter(req: any, res: any) {
+        try {
+            const { locations, measurementTypes } = req.query;
+            const requestIp = req.ip;
+            const userAgent = req.get("User-Agent") || "";
+
+
+            console.log("\n\controller\n\n", locations, measurementTypes, "\n\n");
+
+
+            const locationArray = locations ? locations.split(",") : [];
+            const measurementTypeArray = measurementTypes ? measurementTypes.split(",") : [];
+
+            const filters = {
+                locations: locationArray.length > 0 ? locationArray : undefined,
+                measurementTypes: measurementTypeArray.length > 0 ? measurementTypeArray : undefined,
+            };
+
+            const readings = await this.filterReadingsUseCase.execute(filters, requestIp as string, userAgent); // todo: pensar como pegar id de usuário para parametro UserID
+            return res.status(200).json(readings);
+        } catch (error: any) {
+            return res.status(404).json({ error: error.message });
         }
     }
 

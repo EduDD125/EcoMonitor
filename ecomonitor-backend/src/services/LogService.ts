@@ -151,6 +151,55 @@ export class LogService {
         await this.logRepository.save(log);
     }
 
+    async logGetItensByFilterSuccess(
+        entityName: string,
+        endpoint: string,
+        requestIp: string,
+        userAgent?: string,
+        userId?: string
+    ): Promise<void> {
+        const log = new Log(
+            "INFO",
+            200,
+            new Date(),
+            "GET",
+            endpoint,
+            `Successfully retrieved ${entityName}'s itens with filter`,
+            requestIp,
+            "Backend",
+            userAgent,
+            undefined,
+            userId
+        );
+    
+        await this.logRepository.save(log);
+    }
+
+    async logGetItensByFilterError(
+        entityName: string,
+        endpoint: string,
+        requestIp: string,
+        userAgent?: string,
+        errorStack?: string,
+        userId?: string
+    ): Promise<void> {
+        const log = new Log(
+            "WARN",
+            400,
+            new Date(),
+            "GET",
+            endpoint,
+            `Problem trying to retrieved ${entityName}'s itens with filter`,
+            requestIp,
+            "Backend",
+            userAgent,
+            errorStack,
+            userId
+        );
+    
+        await this.logRepository.save(log);
+    }
+
     async logGetAllItensError(
         entityName: string,
         endpoint: string,
