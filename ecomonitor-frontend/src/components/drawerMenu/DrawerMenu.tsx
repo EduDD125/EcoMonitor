@@ -12,23 +12,14 @@ import {
 } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
-import BarChartIcon from "@mui/icons-material/BarChart";
-import ListAltIcon from "@mui/icons-material/ListAlt";
 import { Link } from "react-router-dom";
+import { useAppContext } from "src/hooks/useAppContext";
 
-interface ISubRoute {
-  path: string;
-  text: string;
-}
-
-interface IRoute {
-  text: string;
-  icon: React.JSX.Element;
-  subRoutes: ISubRoute[];
-}
 
 const DrawerMenu: React.FC = () => {
   const [expanded, setExpanded] = useState<boolean>(false);
+  const { drawerMenuRoutes } = useAppContext();
+
 
   const toggleExpand = () => {
     if (expanded){
@@ -44,25 +35,6 @@ const DrawerMenu: React.FC = () => {
       }
   }
 
-  const drawerMenuRoutes: IRoute[] = [
-    {
-      text: "Leituras",
-      icon: <BarChartIcon />,
-      subRoutes: [
-        { path: "/leituras/", text: "Registros e Exportação" },
-        { path: "/leituras/nova_leitura", text: "Adicionar registro" },
-        { path: "/leituras/estatisticas", text: "Estatísticas" },
-      ],
-    },
-    {
-      text: "Logs do Sistema",
-      icon: <ListAltIcon />,
-      subRoutes: [
-        { path: "/logs/", text: "Registros e Exportação" },
-        { path: "/logs/estatisticas", text: "Estatísticas" },
-      ],
-    },
-  ];
 
   return (
     <Box sx={{ 
@@ -78,29 +50,36 @@ const DrawerMenu: React.FC = () => {
         <MenuIcon />
       </IconButton>
       <List>
+
         {drawerMenuRoutes.map((route, index) => (
+          
           <Box key={index}>
+          
             {expanded ?
               <Accordion disableGutters>
+                
                 <AccordionSummary expandIcon={<ExpandMoreIcon />}>
                     <IconButton>
                     {route.icon}
                   </IconButton>
                   <ListItemText primary={route.text} />
                 </AccordionSummary>
+
                 <AccordionDetails>
                   <List component="div" disablePadding>
+                    
                     {route.subRoutes.map((subRoute, subIndex) => (
                       <ListItemButton
                         key={subIndex}
                         component={Link}
                         to={subRoute.path}
                       >
-                        <ListItemText primary={subRoute.text} />
+                      <ListItemText primary={subRoute.text} />
                       </ListItemButton>
                     ))}
                   </List>
                 </AccordionDetails>
+                
               </Accordion>
               :
               <ListItem disablePadding sx={{justifyContent: "center"}}>
