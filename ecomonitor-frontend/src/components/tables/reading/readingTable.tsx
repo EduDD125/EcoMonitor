@@ -97,7 +97,12 @@ const ReadingTable: React.FC = () => {
       />
 
 
-      <TableContainer component={Paper} sx={{ maxHeight: "auto", width: "100%",backgroundColor: "rgba(255,255,255,0.8)" }}>
+      <TableContainer component={Paper} sx={{
+        maxHeight: "auto",
+        width: "100%",
+        backgroundColor: "rgba(255,255,255,0.8)",
+        borderRadius: "8px",
+      }}>
       <Table stickyHeader aria-label="sticky table" size="small">
           
           <TableHead sx={{ backgroundColor: "#333" }}>
