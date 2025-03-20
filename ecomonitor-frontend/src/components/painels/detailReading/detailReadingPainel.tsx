@@ -7,6 +7,11 @@ import {
   Typography,
   CircularProgress,
   Box,
+  FormControl,
+  InputLabel,
+  Select,
+  MenuItem,
+  SelectChangeEvent,
 } from "@mui/material";
 import { useFetchReading } from "../../../hooks/useFetchReading";
 import { useSaveReading } from "../../../hooks/useSaveReading";
@@ -23,6 +28,9 @@ export default function DetailReadingPainel() {
   const { id } = useParams();
   const navigate = useNavigate();
   const isEditing = Boolean(id);
+
+  const locations = ["São Paulo", "Rio de Janeiro"];
+  const measurementTypes = ["Humidade do Ar", "Temperatura", "CO2 na atmosfera"];
 
   const { reading, setReading, loading, error } = useFetchReading(id);
   const { saveReading, loading: saving, error: saveError } = useSaveReading(id);
@@ -48,9 +56,14 @@ export default function DetailReadingPainel() {
     setReading({ ...reading, [e.target.name]: e.target.value });
   };
 
+  const handleSelectionChange = (e:  SelectChangeEvent<string>) => {
+    setReading({ ...reading, [e.target.name]: e.target.value });
+  }
+
 
   const handleSave = async (reading: Reading) => {
     try {
+      console.log("reading:", reading);
       await saveReading(reading);
       handleShowToast(isEditing ? "Leitura editada com sucesso!" : "Leitura salva com sucesso" , 200);
       setTimeout(() => navigate("/leituras"), 1500); // Redirecionar após sucesso
@@ -81,13 +94,28 @@ export default function DetailReadingPainel() {
         <Typography color="error">{error}</Typography>
       ) : (
         <Box display="flex" flexDirection="column" gap={2}>
-          <TextField
-            label="Localização"
-            name="location"
-            value={reading.location}
-            onChange={handleChange}
-            fullWidth
-          />
+          <FormControl fullWidth>
+            <InputLabel>Localização</InputLabel>
+            <Select name="location" value={reading.location} onChange={handleSelectionChange} fullWidth>
+              {locations.map((loc) => (
+                <MenuItem key={loc} value={loc}>
+                  {loc}
+                </MenuItem>
+              ))}
+            </Select>
+          </FormControl>
+
+          {/* Select para Tipo de Medida */}
+          <FormControl fullWidth>
+            <InputLabel>Tipo de Medida</InputLabel>
+            <Select name="measurementType" value={reading.measurementType} onChange={handleSelectionChange} fullWidth>
+              {measurementTypes.map((type) => (
+                <MenuItem key={type} value={type}>
+                  {type}
+                </MenuItem>
+              ))}
+            </Select>
+          </FormControl>
 
           {isEditing && (
             <TextField
@@ -99,14 +127,6 @@ export default function DetailReadingPainel() {
               fullWidth
             />
           )}
-
-          <TextField
-            label="Tipo de Medida"
-            name="measurementType"
-            value={reading.measurementType}
-            onChange={handleChange}
-            fullWidth
-          />
           <TextField
             label="Valor"
             name="value"
