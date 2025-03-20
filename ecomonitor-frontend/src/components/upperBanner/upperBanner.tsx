@@ -2,10 +2,11 @@ import { useState } from "react";
 import "./upperBannerStyle.css"
 import DrawerMenu from "../drawerMenu/DrawerMenu";
 import DrawerMobileMenu from "../drawerMenu/drawerMobileMenu/drawerMobileMenu";
+import { useAppContext } from "src/hooks/useAppContext";
 
 export default function UpperBanner() {
     const width = window.innerWidth;
-    const [isMobile, setIsMobile] = useState(width < 1025);
+    const { isMobile } = useAppContext();
 
     return (
         <div className="upper-banner__container">
