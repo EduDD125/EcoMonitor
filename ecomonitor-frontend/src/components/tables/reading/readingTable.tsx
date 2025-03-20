@@ -20,11 +20,13 @@ import { useDeleteItem } from "../../../hooks/useDeleteItem";
 import { GetReadingDTO } from "../../dtos/GetReadingDTO";
 import TableFilter from "src/components/filters/tableFilter";
 import ToastNotification from "src/components/toasts/toastNotification";
+import { useAppContext } from "src/hooks/useAppContext";
 
 const ReadingTable: React.FC = () => {
-  const navigate = useNavigate(); // Hook para navegação
+  const navigate = useNavigate(); 
   const { data: readings, loading, error, setData } = useFetchTablesData<GetReadingDTO>("/api/leituras");
   const { deleteItem } = useDeleteItem("/api/leituras");
+  const { locations, measurementTypes } = useAppContext();
 
   const [selectedIds, setSelectedIds] = useState<string[]>([]);
 
@@ -72,7 +74,7 @@ const ReadingTable: React.FC = () => {
     navigate(`/leituras/${id}`); // Navega para a página de detalhes da leitura
   };
   
-  useEffect(() => {console.log(readings)},[readings]);
+  useEffect(() => {console.log("carregando tabela...")},[readings]);
 
   if (loading) return <CircularProgress />;
   if (error) return <Typography color="error">{error}</Typography>;
@@ -86,13 +88,18 @@ const ReadingTable: React.FC = () => {
         gap: "40px",
         height: "100%",
       }}>
+
+        
       <TableFilter 
         onUpdateTable={setData} 
-        options1={["São Paulo", "Rio de Janeiro"]} 
-        options2={["Humidade do Ar", "Temperatura", "CO2 na atmosfera"]} 
+        options1={locations} 
+        options2={measurementTypes} 
       />
+
+
       <TableContainer component={Paper} sx={{ maxHeight: "auto", width: "100%",backgroundColor: "rgba(255,255,255,0.8)" }}>
       <Table stickyHeader aria-label="sticky table" size="small">
+          
           <TableHead sx={{ backgroundColor: "#333" }}>
             <TableRow sx={{ backgroundColor: "rgba(255,255,255,0.1)", height: "40px" }}>
               <TableCell sx={{ backgroundColor: "#333", color: "#fff", padding: "8px" }}>
@@ -111,7 +118,10 @@ const ReadingTable: React.FC = () => {
               <TableCell sx={{ backgroundColor: "#333", color: "#fff", padding: "8px" }}>Valor</TableCell>
             </TableRow>
           </TableHead>
+          
           <TableBody sx={{ backgroundColor: "rgba(255,255,255,0.1)" }}>
+            
+          
             {readings.map((reading) => (
               <TableRow 
                 sx={{ backgroundColor: "rgba(255,255,255,0.1)", height: "40px" }} 
@@ -131,11 +141,13 @@ const ReadingTable: React.FC = () => {
                 <TableCell sx={{ backgroundColor: "rgba(255,255,255,0.1)", padding: "8px" }}>{reading.measurementType}</TableCell>
                 <TableCell sx={{ backgroundColor: "rgba(255,255,255,0.1)", padding: "8px" }}>{reading.value}</TableCell>
               </TableRow>
-            ))}
+          ))}
+          
           </TableBody>
         </Table>
 
       </TableContainer>
+
       <ToastNotification
         open={toast.open}
         message={toast.message}
