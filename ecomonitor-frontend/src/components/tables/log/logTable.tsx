@@ -12,7 +12,7 @@ import {
   Typography,
 } from "@mui/material";
 import useFetchTablesData from "../../../hooks/useFetchTablesData";
-import { GetLogDTO } from "../../dtos/GetLogDTO";
+import { GetLogDTO } from "src/components/dtos/GetLogDTO";
 
 const LogTable: React.FC = () => {
   const { data: logs, loading, error } = useFetchTablesData<GetLogDTO>("/api/logs");
