@@ -51,7 +51,7 @@ const TableFilter: React.FC<TableFilterProps> = ({ onUpdateTable, options1, opti
   }
 
     const filteredData = await fetchFilteredData(filters);
-    //onUpdateTable(filteredData as any[]); // Atualiza a tabela com os novos dados
+    onUpdateTable(filteredData as any[]); // Atualiza a tabela com os novos dados
   };
 
   useEffect(() => {

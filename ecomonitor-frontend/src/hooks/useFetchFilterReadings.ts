@@ -19,9 +19,8 @@ export const useFetchFilteredReadings = () => {
       const url = `/api/leituras?${queryParams.toString()}`;
 
       console.log("url:", url);
-      return
-      //const response = await api.get(url);
-      //return response.data;
+      const response = await api.get(url);
+      return response.data;
     } catch (error) {
       console.error("Erro ao buscar leituras filtradas:", error);
       return [];

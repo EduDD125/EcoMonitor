@@ -1,5 +1,5 @@
 import "./../tablesStyle.css";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   Table,
   TableBody,
@@ -71,6 +71,8 @@ const ReadingTable: React.FC = () => {
     if ((event.target as HTMLElement).tagName.toLowerCase() === "input") return; // Ignora clique no checkbox
     navigate(`/leituras/${id}`); // Navega para a página de detalhes da leitura
   };
+  
+  useEffect(() => {console.log(readings)},[readings]);
 
   if (loading) return <CircularProgress />;
   if (error) return <Typography color="error">{error}</Typography>;
