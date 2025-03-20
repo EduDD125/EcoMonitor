@@ -16,7 +16,7 @@ import {
 import { useFetchReading } from "../../../hooks/useFetchReading";
 import { useSaveReading } from "../../../hooks/useSaveReading";
 import ToastNotification from "src/components/toasts/toastNotification";
-import { Reading } from "src/interfaces/reading";
+import { Reading } from "src/interfaces/readingInterface";
 import { useAppContext } from "src/hooks/useAppContext";
 
 

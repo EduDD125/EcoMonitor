@@ -5,7 +5,6 @@ import DrawerMobileMenu from "../drawerMenu/drawerMobileMenu/drawerMobileMenu";
 import { useAppContext } from "src/hooks/useAppContext";
 
 export default function UpperBanner() {
-    const width = window.innerWidth;
     const { isMobile } = useAppContext();
 
     return (

@@ -1,15 +1,16 @@
 import "./controlPainelStyle.css";
 import UpperBanner from "src/components/upperBanner/upperBanner";
 import DrawerMenu from "../../drawerMenu/DrawerMenu";
+import { useAppContext } from "src/hooks/useAppContext";
 
 interface ControlPainelProps {
   children: React.ReactNode;
 }
 
 export default function ControlPainel({ children }: ControlPainelProps) {
-  const width = window.innerWidth;
+  const { isMobile } = useAppContext();
 
-  if (width < 1025)
+  if (isMobile)
     return (
       <main className="main__content">
         <UpperBanner />
