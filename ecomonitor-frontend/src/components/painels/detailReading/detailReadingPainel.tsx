@@ -64,11 +64,11 @@ export default function DetailReadingPainel() {
   return (
     <Paper sx={{ 
       padding: 3, 
-      maxWidth: 600, 
-      margin: "auto", 
-      marginTop: 4 ,
       width: "100%",
-      borderRadius: "10px"
+      borderRadius: "10px",
+      boxSizing: "border-box",
+      margin: "0px",
+      maxWidth: "900px"
       }}
     >
       <Typography variant="h5" gutterBottom>

@@ -36,7 +36,7 @@
 .control-painel__content {
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: start;
     align-items: center;
     gap: 40px;
     flex: 1 0 0;
@@ -83,7 +83,7 @@
     .control-painel__content {
         display: flex;
         flex-direction: column;
-        justify-content: center;
+        justify-content: start;
         align-items: center;
         gap: 40px;
         flex: 1 0 0;
