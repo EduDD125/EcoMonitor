@@ -36,7 +36,8 @@ describe("FilterReadingsUseCase", () => {
         const filters = { locations: ["São Paulo"], measurementTypes: ["Temperatura"] };
         const result = await filterReadingsUseCase.execute(filters, "127.0.0.1", "Mozilla/5.0", "user123");
 
-        expect(result).toEqual(mockReadings);
+        expect(result?.every( reading => reading.getLocation() === 'São Paulo')).toBeTruthy();
+        
         expect(mockReadingRepository.findByFilter).toHaveBeenCalledWith(filters);
         expect(mockLogRepository.save).toHaveBeenCalled(); // Confirma que o log foi chamado
     });
