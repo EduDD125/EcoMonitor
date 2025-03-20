@@ -77,10 +77,10 @@ const ReadingTable: React.FC = () => {
 
   return (
     <div className="entity-table__container">
-      <TableFilter
-        onChange={() => console.log()}
-        options1={["São Paulo", "Rio de Janeiro"]}
-        options2={["Humidade do Ar", "Temperatura", "CO2 na atmosfera"]}
+      <TableFilter 
+        onUpdateTable={setData} 
+        options1={["São Paulo", "Rio de Janeiro"]} 
+        options2={["Humidade do Ar", "Temperatura", "CO2 na atmosfera"]} 
       />
       <TableContainer component={Paper} sx={{ maxHeight: 440, width: "100%", backgroundColor: "#333" }}>
         <Table stickyHeader aria-label="sticky table">
