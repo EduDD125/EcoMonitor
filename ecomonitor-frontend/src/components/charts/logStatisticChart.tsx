@@ -71,12 +71,12 @@ const LogsDashboard: React.FC = () => {
   );
 
   return (
-    <Box sx={{ display: "flex", flexDirection: "column", gap: 4, p: 3 , width: "100%", height: "100%", background: "rgba(255,255,255,0.6)"}}>
+    <Box sx={{ display: "flex", flexDirection: "column", gap: 4, p: 3 , width: "100%", height: "100%", background: "rgba(255,255,255,0.75)", boxSizing: "border-box", borderRadius: "10px"}}>
       <Typography variant="h4" align="center">
         📊 Painel de Estatísticas de Logs
       </Typography>
 
-    <Box sx={{ display: "flex", flexDirection: "column", flexWrap: "wrap", height: "100%", gap: 4, p: 3 , width: "100%"}}>
+    <Box sx={{ display: "flex", flexDirection: "column", flexWrap: "wrap", height: "100%", gap: 4, p: 3 , width: "100%", overflow: "scroll"}}>
       {/* Logs por Nível */}
       <Paper sx={{ padding: 3, borderRadius: 2, boxShadow: 2, width: "30%" }}>
         <Typography variant="h6">Logs por Nível</Typography>
